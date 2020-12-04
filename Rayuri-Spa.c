@@ -375,3 +375,163 @@ void tampilkanRincianJasa7(void){
 	printf("      mendinginkan kulit dan membuatnya bercahaya dan diakhiri oleh mandi berendam.\n\n");
 	printf("                           3 Hours Rp 580.000,- \n\n");
 }
+
+//maunya kasir
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void tampilkanheader(void);
+//int hitungharga(int i, int paket, int totalharga[100], int jumlah[100])
+void tampilkantotalharga(int totalhargakeseluruhan);
+int hitungsisapembayaran(int totalhargakeseluruhan, int DP);
+void tampilkansisapembayaran(int sisapembayaran);
+int hitungkembali(int pembayaran, int totalhargakeseluruhan);
+void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan);
+void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran);
+
+
+int main(){
+	char namaPelanggan[100], noHp[100], namapaket[100];
+	int i, paket, harga[100], jumlah[100], totalharga[100], totalhargakeseluruhan = 0, DP, pembayaran;
+
+	tampilkanheader();
+
+	printf("Nama Pelanggan              : ");
+    gets(namaPelanggan);
+    printf("No Hp                       : ");
+    gets(noHp);
+
+    printf("========================================================\n\n");
+	printf("Total Jumlah Paket          : ");
+	scanf("%i", &paket);
+    printf(" \n");
+
+	for(i=1; i<=paket; i++){
+		printf("Nama Paket ke-%i             : ", i);
+		//scanf("%s", &namapaket[i]);
+        scanf(" %[^\n]s",&namapaket[i]);
+		printf("Harga Paket %i               : Rp. ", i);
+		scanf("%i", &harga[i]);
+		printf("Jumlah                      : ");
+		scanf("%i", &jumlah[i]);
+        printf(" \n");
+	}
+
+	for(i=1; i<=paket; i++){
+		totalharga[i] =jumlah[i]*harga[i];
+		totalhargakeseluruhan = totalhargakeseluruhan + totalharga[i];
+	}
+
+	printf("Daftar Belanja Anda         :\n");
+	for(i=1; i<=paket; i++){
+		printf("%i. %i %s (Rp.%i)              : Rp. %i\n", i, jumlah[i], &namapaket[i], harga[i], totalharga[i]);
+	}
+
+	tampilkantotalharga(totalhargakeseluruhan);
+
+	printf("Dp                          : Rp. ");
+	scanf("%i", &DP);
+
+	int sisapembayaran = hitungsisapembayaran (totalhargakeseluruhan, DP);
+	tampilkansisapembayaran(sisapembayaran);
+
+	printf("Pembayaran                  : Rp. ");
+	scanf("%i", &pembayaran);
+
+	int kembali = hitungkembali(pembayaran, totalhargakeseluruhan);
+	tampilkankembali(kembali, pembayaran, sisapembayaran, totalhargakeseluruhan);
+
+	cetaknota(namaPelanggan, noHp, i, jumlah, harga, totalharga, namapaket, totalhargakeseluruhan, DP, pembayaran, kembali, paket, sisapembayaran);
+	
+	return 0;
+}
+
+void tampilkanheader(void){
+	printf("--------------------------------------------------------\n");
+    printf("================= WELCOME TO RAYURI SPA =================\n");
+    printf("|                   Kota Denpasar                      |\n");
+    printf("|                  Telp. 08123456789                   |\n");
+    printf("---------------------------------------------------------\n\n");
+}
+
+void tampilkantotalharga(int totalhargakeseluruhan){
+	printf("========================================================\n\n");
+	printf("Total Harga Keseluruhan     : Rp. %i\n", totalhargakeseluruhan);
+}
+
+int hitungsisapembayaran(int totalhargakeseluruhan, int DP){
+	int sisapembayaran;
+	sisapembayaran = totalhargakeseluruhan - DP;
+	return sisapembayaran;
+}
+
+void tampilkansisapembayaran(int sisapembayaran){
+	printf("Sisa Pembayaran	            : Rp. %i\n", sisapembayaran);
+}
+
+int hitungkembali(int pembayaran, int totalhargakeseluruhan){
+	int kembali;
+	kembali = pembayaran - totalhargakeseluruhan;
+	return kembali;
+}
+
+void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan){
+	if(pembayaran>=sisapembayaran)
+	{	printf("========================================================\n");
+		printf("Total Harga                 : Rp. %i\n", totalhargakeseluruhan);
+		printf("Pembayaran                  : Rp. %i\n", pembayaran);
+		if(pembayaran>totalhargakeseluruhan){
+			printf("Kembali                    : Rp. %i\n", kembali);
+		}
+		printf("========================================================\n");
+		printf ("|                      TERIMAKASIH                     |\n");
+		printf ("|                TELAH MELAKUKAN TRANSAKSI             |\n");
+		printf ("|                      DI RAYURI SPA                   |\n");
+		printf("========================================================\n");
+
+	}
+	else
+	{
+		printf ("|          TRANSAKSI SALAH					|\n");
+	}
+}
+
+void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran){
+	FILE * fpointernota;
+	fpointernota = fopen("nota.txt", "w");
+    fprintf(fpointernota,"========================================================\n");
+    fprintf(fpointernota,"|                    RAYURI SPA                          |\n");
+    fprintf(fpointernota,"|                 Kota Denpasar                        |\n");
+    fprintf(fpointernota,"|                Telp. 08123456789                     |\n");
+    fprintf(fpointernota,"========================================================\n");
+    fprintf(fpointernota,"| Bukti Pembayaran Paket Spa                           |\n");                
+    fprintf(fpointernota,"  Nama Pelanggan                            : %s\n",namaPelanggan);                
+    fprintf(fpointernota,"  No Telepon                                : %s\n",noHp);                
+    fprintf(fpointernota,"========================================================\n");
+    fprintf(fpointernota,"Daftar Belanja Anda                         :\n");    
+    for(i=1; i<=paket; i++){
+		fprintf(fpointernota, "%i. %i %s (Rp.%i)                         : Rp. %i\n", i, jumlah[i], &namapaket[i], harga[i], totalharga[i]);
+	}            
+	if(pembayaran>=sisapembayaran)
+	{	fprintf(fpointernota, "=========================================================\n");
+		fprintf(fpointernota, "Total Harga                            : Rp. %i\n", totalhargakeseluruhan);
+		fprintf(fpointernota, "DP                                     : Rp. %i\n", DP);
+		fprintf(fpointernota, "Pembayaran                             : Rp. %i\n", pembayaran);
+		if(pembayaran>totalhargakeseluruhan){
+			fprintf(fpointernota, "Kembalian                            : Rp. %i\n", kembali);
+		}
+		fprintf(fpointernota,"========================================================\n");
+		fprintf(fpointernota,"|                     TERIMAKASIH                       |\n");
+		fprintf(fpointernota,"|              TELAH MELAKUKAN TRANSAKSI                |\n");
+		fprintf(fpointernota,"|                    DI RAYURI SPA                      |\n");
+		fprintf(fpointernota,"========================================================\n");
+		fclose(fpointernota);
+
+	}
+	else
+	{
+		fprintf (fpointernota,"|                    TRANSAKSI SALAH                   |\n");
+	}
+   fclose (fpointernota);
+}*/
