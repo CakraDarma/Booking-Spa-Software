@@ -4,7 +4,7 @@
 #include <string.h>
 #include <windows.h>
 #include <conio.h>
-
+ 
 //prtotipe program
 void judul (void);
 void header(void);
@@ -22,13 +22,21 @@ void tampilkanRincianJasa7(void);
 void cetakKuitansi(const char * namaPelanggan, const char * noHp, const char * alamat, const char * namaJasa, int harga, int bayarDp);
 void login(void);
 void menuPegawai(void);
-
+void menuKasir(void);
+void tampilkantotalharga(int totalhargakeseluruhan);
+int hitungsisapembayaran(int totalhargakeseluruhan, int DP);
+void tampilkansisapembayaran(int sisapembayaran);
+int hitungkembali(int pembayaran, int totalhargakeseluruhan);
+void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan);
+void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran);
+void detailpembelian(char namaPelanggan[100], char noHp[100], char namapaket[100], int i, int paket, int harga[100], int jumlah[100], int totalharga[100], int totalhargakeseluruhan, int DP, int pembayaran);
+ 
 int main() {
 	judul();
 	login();
 return 0;
 }
-
+ 
  //tampil awal
 void judul(void){
 	system("cls");
@@ -42,7 +50,7 @@ void judul(void){
 	printf("\t\t\t   WELCOME TO RAYURI SPA");
 	getch();
 }
-
+ 
 //header program
 void header(void){
 	printf("\n\n\nRayuri SPA\n");
@@ -50,7 +58,30 @@ void header(void){
 	printf("No. Telp 08123456789\n");
 	printf("****************************************************\n");
 }
-
+ 
+void login(void){
+	//login belum selesai
+	system("cls");
+ 
+	int pilihPengguna;
+	char UsernamePegawai [50];
+	char UsernameCostumer [50];
+	char passwordPegawai [50];
+	char passwordCostumer [50];
+ 
+	printf("\n\n\n\n\n\n\n");
+	printf("\t\t\t\t\t\t\tRayuri Spa\n\n");
+	printf("\t\t\t\t[1] Costumer\n");
+	printf("\t\t\t\t[2] Staff\n");
+	scanf("%d",&pilihPengguna);
+	if(pilihPengguna == 1){
+		menuCostumer();
+	}
+	else if(pilihPengguna == 2){
+		menuPegawai();
+	}
+}
+ 
 //main menu
 void menuCostumer(void){
 	system("cls");
@@ -84,21 +115,21 @@ void menuCostumer(void){
 			exit(0);
 		}
 		else{
-	    	
+ 
    			inputSalah();
 		}
 }
-
+ 
 //menu jasa
 void menuJasa(void){
 	system("cls");
 	header();
 	const  float dp = 0.5;
 	const char * namaJasa;
-	
+ 
 	int menuJasa, bayarDp, harga;
 	char teruskanPemesanan;
-
+ 
 	printf ("|=============================================|\n");
 	printf ("|                  DAFTAR PAKET               |\n");
 	printf ("|=============================================|\n");
@@ -116,7 +147,7 @@ void menuJasa(void){
 	printf ("=============================================== \n");
 	printf ("Silahkan pilih : "); // Memilih Jasa yang diinginkan
 	scanf("%d", &menuJasa);
-
+ 
 	system ("cls");
 	// insialisasi harga dan nama jasa
 	if(menuJasa==1){
@@ -178,7 +209,7 @@ void menuJasa(void){
    	else if(menuJasa == 9){
    		menuCostumer();
    	}
-	
+ 
 	//lanjut ke pembayaran
 	bayarDp = dp * harga;
 	char namaPelanggan[100] ;
@@ -193,7 +224,7 @@ void menuJasa(void){
 	getchar();
 	teruskanPemesanan = getchar();
 	printf("|====================================================|\n\n");	
-	
+ 
 	if(teruskanPemesanan == 'y'||teruskanPemesanan == 'Y'){
 		system("cls");
 		printf("\n\n");
@@ -215,10 +246,10 @@ void menuJasa(void){
 	else if(teruskanPemesanan == 'n'||teruskanPemesanan == 'N'){
 		menuCostumer();
 	}
-
+ 
 }
-
-
+ 
+ 
 void menuBantuan(void){
 	system("cls");
 	header();
@@ -269,11 +300,11 @@ void menuBantuan(void){
    		//kembali ke menu utama
 	    case 3:
    		menuCostumer();
-   
+ 
  	}
-
+ 
 }
-
+ 
 //input salah
 void inputSalah(void){
 	system("cls");
@@ -288,12 +319,12 @@ void inputSalah(void){
 		menuCostumer();
 	}	
 }
-
+ 
 //cetak kuitansi
 void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * alamat, const char * namaJasa, int harga, int bayarDp){
     //kuitansi
     FILE * fpointer;
-    fpointer=fopen("kuitansi.txt", "w+"); 
+    fpointer=fopen("kuitansi.txt", "w"); 
     fprintf(fpointer,"========================================================\n");
     fprintf(fpointer,"|                    RAYURI SPA                        |\n");
     fprintf(fpointer,"|                 Kota Denpasar                        |\n");
@@ -313,7 +344,7 @@ void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * al
     fprintf(fpointer,"========================================================\n");
     fclose(fpointer);
  }
-
+ 
 //menampilkan rincian jasa
 void tampilkanRincianJasa1(void){
 	printf("                                   SIMPLE SENSE\n\n");
@@ -322,7 +353,7 @@ void tampilkanRincianJasa1(void){
 	printf("Perawatan dimulai dengan pijat badan dengan aromatherapy dan dilanjutkan dengan pijat wajah.\n");
 	printf("                               1.5 hours Rp 190.000,-\n");
 }
-
+ 
 void tampilkanRincianJasa2(void){
 	printf("                                  SERENITY SENSE\n\n");
 	printf("                     Body massage with aromatherphy and Body scrub\n\n");
@@ -332,7 +363,7 @@ void tampilkanRincianJasa2(void){
 	printf("                      kulit mati dan dilanjutkan dengan shower.\n\n");
 	printf("                                1.5 Hours Rp 205.000,-\n\n");
 }
-
+ 
 void tampilkanRincianJasa3(void){
 	printf("                                  REFRESH SENSE\n\n");
 	printf("                Body Massage (Traditional), Face Massages, Luxury Bath\n\n");
@@ -341,7 +372,7 @@ void tampilkanRincianJasa3(void){
 	printf("                                 diinginkan.\n\n");
 	printf("                             1 Hour Rp 265.000,-\n\n");
 }
-
+ 
 void tampilkanRincianJasa4(void){
 	printf("                                 BALANCE SENSE\n\n");
 	printf("                 Body massage, Body steam, Body Mask, Ear Candling\n\n");
@@ -350,7 +381,7 @@ void tampilkanRincianJasa4(void){
 	printf("                   setelahnya dimasker dan terapi telinga.\n\n");
 	printf("                              2 Hours Rp 370.000,- \n\n");
 }
-
+ 
 void tampilkanRincianJasa5(void){
 	printf("                                 DETOX SENSE\n\n");
 	printf("              Body Massage, Body steam, Body Scrub, Body Mask, Bathing\n\n");
@@ -359,9 +390,9 @@ void tampilkanRincianJasa5(void){
 	printf("Perawatan ini dimulai dari pijat badan dengan aromaterapi, kemudian dilanjutkan dengan, lulur,\n");
 	printf("                 masker dan terakhir dengan mandi berendam.\n\n");
 	printf("                             2.5 Hours Rp 530.000,- \n\n");
-
+ 
 }
-
+ 
 void tampilkanRincianJasa6(void){
 	printf("                                FIRMING SENSE\n\n");
 	printf("                      Body scrub, Body mask, Body wrapping\n\n");
@@ -371,7 +402,7 @@ void tampilkanRincianJasa6(void){
 	printf("                          menggunakan selimut elektrik.\n");
 	printf("                              1.5 Hours Rp 330.000,- \n\n");
 }
-
+ 
 void tampilkanRincianJasa7(void){
 	printf("                              ABSOLUTE SENSE\n\n");
 	printf("     Body steam, Body scrub, Body mask, Bathing, Body & Face Massage\n\n");
@@ -381,9 +412,11 @@ void tampilkanRincianJasa7(void){
 	printf("      mendinginkan kulit dan membuatnya bercahaya dan diakhiri oleh mandi berendam.\n\n");
 	printf("                           3 Hours Rp 580.000,- \n\n");
 }
-
+ 
 void menuPegawai(void){
 	system("cls");
+	header();
+	int menuJasa;
 	printf ("|=============================================|\n");
 	printf ("|                                             |\n");
 	printf ("|=============================================|\n");
@@ -398,28 +431,147 @@ void menuPegawai(void){
 	printf ("=============================================== \n");
 	printf ("Silahkan pilih : "); // Memilih Jasa yang diinginkan
 	scanf("%d", &menuJasa);
-
-	system ("cls");
+ 
+	if(menuJasa==1){
+		menuKasir();
+	}
+ 
 }
-
-void login(void){
+ 
+void menuKasir(void){
 	system("cls");
-	
-	int pilihPengguna;
-	char UsernamePegawai [50];
-	char UsernameCostumer [50];
-	char passwordPegawai [50];
-	char passwordCostumer [50];
-
-	printf("\n\n\n\n\n\n\n");
-	printf("\t\t\t\t\t\t\tRayuri Spa\n\n");
-	printf("\t\t\t\t[1] Costumer\n");
-	printf("\t\t\t\t[2] Staff\n");
-	scanf("%d",&pilihPengguna);
-	if(pilihPengguna == 1){
-		menuCostumer();
+	char namaPelanggan[100], noHp[100], namapaket[100];
+	int i, paket, harga[100], jumlah[100], totalharga[100], totalhargakeseluruhan = 0, DP, pembayaran;
+    //detailpembelian(namaPelanggan, noHp, namapaket, i, paket, harga, jumlah, totalharga, totalhargakeseluruhan, DP, pembayaran);
+    totalhargakeseluruhan = 0;
+	header();
+    printf("Nama Pelanggan              : ");
+    scanf(" %[^\n]s",namaPelanggan);
+    printf("No Hp                       : ");
+    scanf(" %[^\n]s",noHp);
+ 
+    printf("========================================================\n");
+	printf("Total Jumlah Paket          : ");
+	scanf("%i", &paket);
+    printf(" \n");
+ 
+	for(i=1; i<=paket; i++){
+		printf("Nama Paket ke-%i             : ", i);
+        scanf(" %[^\n]s",&namapaket[i]);
+		printf("Harga Paket %i               : Rp. ", i);
+		scanf("%i", &harga[i]);
+		printf("Jumlah                      : ");
+		scanf("%i", &jumlah[i]);
+        printf(" \n");
 	}
-	else if(pilihPengguna == 2){
-		menuPegawai();
+ 
+	for(i=1; i<=paket; i++){
+		totalharga[i] =jumlah[i]*harga[i];
+		totalhargakeseluruhan = totalhargakeseluruhan + totalharga[i];
 	}
+	printf("Daftar Belanja Anda         :\n");
+	for(i=1; i<=paket; i++){
+		printf("%i. %s (Rp.%i) x%i       : Rp. %i\n", i, &namapaket[i], harga[i], jumlah[i], totalharga[i]);
+	}
+	tampilkantotalharga(totalhargakeseluruhan);
+ 
+	printf("DP                          : Rp. ");
+	scanf("%i", &DP);
+ 
+	int sisapembayaran = hitungsisapembayaran (totalhargakeseluruhan, DP);
+	tampilkansisapembayaran(sisapembayaran);
+ 
+	printf("Pembayaran                  : Rp. ");
+	scanf("%i", &pembayaran);
+ 
+	int kembali = hitungkembali(pembayaran, totalhargakeseluruhan);
+	tampilkankembali(kembali, pembayaran, sisapembayaran, totalhargakeseluruhan);
+ 
+	cetaknota(namaPelanggan, noHp, i, jumlah, harga, totalharga, namapaket, totalhargakeseluruhan, DP, pembayaran, kembali, paket, sisapembayaran);
+ 
+	getch();
+	menuPegawai();    
+}
+ 
+void tampilkantotalharga(int totalhargakeseluruhan){
+	printf("========================================================\n\n");
+	printf("Total Harga Keseluruhan     : Rp. %i\n", totalhargakeseluruhan);
+}
+ 
+int hitungsisapembayaran(int totalhargakeseluruhan, int DP){
+	int sisapembayaran;
+	sisapembayaran = totalhargakeseluruhan - DP;
+	return sisapembayaran;
+}
+ 
+void tampilkansisapembayaran(int sisapembayaran){
+	printf("Sisa Pembayaran	            : Rp. %i\n", sisapembayaran);
+}
+ 
+int hitungkembali(int pembayaran, int totalhargakeseluruhan){
+	int kembali;
+	kembali = pembayaran - totalhargakeseluruhan;
+	return kembali;
+}
+ 
+void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan){
+	if(pembayaran>=sisapembayaran)
+	{	printf("========================================================\n");
+		printf("Total Harga                 : Rp. %i\n", totalhargakeseluruhan);
+		printf("Pembayaran                  : Rp. %i\n", pembayaran);
+		if(pembayaran>totalhargakeseluruhan){
+			printf("Kembali                    : Rp. %i\n", kembali);
+		}
+		printf("========================================================\n");
+		printf ("|                      TERIMAKASIH                     |\n");
+		printf ("|                TELAH MELAKUKAN TRANSAKSI             |\n");
+		printf ("|                      DI RAYURI SPA                   |\n");
+		printf("========================================================\n");
+ 
+	}
+	else
+	{
+		printf ("|          TRANSAKSI GAGAL					|\n");
+	}
+}
+ 
+void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran){
+	FILE * fpointernota;
+	fpointernota = fopen("nota.txt", "w");
+    fprintf(fpointernota,"========================================================\n");
+    fprintf(fpointernota,"|                    RAYURI SPA                        |\n");
+    fprintf(fpointernota,"|                 Kota Denpasar                        |\n");
+    fprintf(fpointernota,"|                Telp. 08123456789                     |\n");
+    fprintf(fpointernota,"========================================================\n");
+    fprintf(fpointernota,"| Bukti Pembayaran Paket Spa                           |\n");                
+    fprintf(fpointernota,"  Nama Pelanggan                            : %s\n",namaPelanggan);                
+    fprintf(fpointernota,"  No Telepon                                : %s\n",noHp);                
+    fprintf(fpointernota,"========================================================\n");
+    fprintf(fpointernota,"Daftar Belanja Anda 	                      :\n");    
+    for(i=1; i<=paket; i++){
+		fprintf(fpointernota, "%i. %i %s (Rp.%i)		    : Rp. %i\n", i, jumlah[i], &namapaket[i], harga[i], totalharga[i]);
+	}            
+	if(pembayaran>=sisapembayaran){
+		fprintf(fpointernota, "=========================================================\n");
+		fprintf(fpointernota, "TOTAL HARGA 			: Rp. %i\n", totalhargakeseluruhan);
+		fprintf(fpointernota, "DP						: Rp. %i\n", DP);
+		fprintf(fpointernota, "PEMBAYARAN 				: Rp. %i\n", pembayaran);
+ 
+		if(pembayaran>totalhargakeseluruhan){
+			fprintf(fpointernota, "KEMBALIAN			    : Rp. %i\n", kembali);
+		}
+ 
+		fprintf(fpointernota,"========================================================\n");
+		fprintf(fpointernota,"|                     TERIMAKASIH                      |\n");
+		fprintf(fpointernota,"|              TELAH MELAKUKAN TRANSAKSI               |\n");
+		fprintf(fpointernota,"|                    DI RAYURI SPA                     |\n");
+		fprintf(fpointernota,"========================================================\n");
+		fclose(fpointernota);
+ 
+	}
+	else
+	{
+		fprintf (fpointernota,"|                    TRANSAKSI SALAH                   |\n");
+	}
+   fclose (fpointernota);
 }
