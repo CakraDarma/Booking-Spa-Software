@@ -4,6 +4,8 @@
 #include <string.h>
 #include <windows.h>
 #include <conio.h>
+#include <time.h>
+ 
  
 //prtotipe program
 void judul (void);
@@ -323,8 +325,11 @@ void inputSalah(void){
 //cetak kuitansi
 void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * alamat, const char * namaJasa, int harga, int bayarDp){
     //kuitansi
+    time_t ambil_waktu1;
+    time(&ambil_waktu1);
     FILE * fpointer;
-    fpointer=fopen("kuitansi.txt", "w"); 
+    fpointer=fopen("kuitansi.txt", "w+"); 
+    fprintf(fpointer,"%s",ctime(&ambil_waktu1));
     fprintf(fpointer,"========================================================\n");
     fprintf(fpointer,"|                    RAYURI SPA                        |\n");
     fprintf(fpointer,"|                 Kota Denpasar                        |\n");
@@ -427,15 +432,17 @@ void menuPegawai(void){
 	printf ("|=============================================|\n");
 	printf ("|                                             |\n");
 	printf ("|[8] RINCIAN                                  |\n"); // Pilih untuk melihat rincian jasa
-	printf ("|[9] KEMBALI                                  |\n"); // Pilihan untuk kembali ke sebelumnya
+	printf ("|[9] KELUAR                                   |\n"); // Pilihan untuk Keluar ke sebelumnya
 	printf ("=============================================== \n");
 	printf ("Silahkan pilih : "); // Memilih Jasa yang diinginkan
 	scanf("%d", &menuJasa);
  
-	if(menuJasa==1){
+	if(menuJasa == 1){
 		menuKasir();
 	}
+	else if(menuJasa == 9){
  
+	}
 }
  
 void menuKasir(void){
@@ -536,8 +543,11 @@ void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int total
 }
  
 void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran){
+	time_t ambil_waktu2;
+    time(&ambil_waktu2);	
 	FILE * fpointernota;
-	fpointernota = fopen("nota.txt", "w");
+	fpointernota = fopen("nota.txt", "w+");
+    fprintf(fpointernota,"%s", ctime(&ambil_waktu2) );
     fprintf(fpointernota,"========================================================\n");
     fprintf(fpointernota,"|                    RAYURI SPA                        |\n");
     fprintf(fpointernota,"|                 Kota Denpasar                        |\n");
