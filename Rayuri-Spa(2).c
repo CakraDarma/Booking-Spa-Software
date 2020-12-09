@@ -8,7 +8,7 @@
  
  
 //prtotipe program
-void judul (void);
+void judul (void); //
 void header(void);
 void menuCostumer(void);
 void menuJasa(void);
@@ -66,9 +66,7 @@ void login(void){
 	system("cls");
  
 	int pilihPengguna;
-	char UsernamePegawai [50];
 	char UsernameCostumer [50];
-	char passwordPegawai [50];
 	char passwordCostumer [50];
  
 	printf("\n\n\n\n\n\n\n");
@@ -76,16 +74,34 @@ void login(void){
 	printf("\t\t\t\t[1] Costumer\n");
 	printf("\t\t\t\t[2] Staff\n");
 	scanf("%d",&pilihPengguna);
+ 
 	if(pilihPengguna == 1){
 		menuCostumer();
 	}
 	else if(pilihPengguna == 2){
-		menuPegawai();
+		loginPegawai:
+		system("cls");
+		char usernamePegawai [50];
+		char passwordPegawai [50];
+		printf("Masukan Username : ");
+        scanf("%s",&usernamePegawai);
+        printf("Masukan Password : ");
+        scanf("%s",&passwordPegawai);
+ 
+        if(strcmp(usernamePegawai,"admin")==0 && strcmp(passwordPegawai,"123")==0){
+			menuPegawai();
+		}
+		else{
+			printf("Username atau passord salah\n");
+         	system("pause");
+         	goto loginPegawai;
+		}
 	}
 }
  
 //main menu
 void menuCostumer(void){
+	menuCostumer:
 	system("cls");
 	header();
 	int menuCostumer;
@@ -94,9 +110,9 @@ void menuCostumer(void){
 	printf ("|=============================================|\n");
 	printf ("|[1] DAFTAR PAKET                             |\n");
 	printf ("|[2] DAFTAR HISTORI                           |\n");
-	printf ("|[3] GATAU                                    |\n");
-	printf ("|[4] GATAU                                    |\n");
-	printf ("|[5] GATAU                                    |\n");
+	printf ("|[3] -                                        |\n");
+	printf ("|[4] -                                        |\n");
+	printf ("|[5] -                                        |\n");
 	printf ("|=============================================|\n");
 	printf ("|                                             |\n");
 	printf ("|[6] BANTUAN                                  |\n"); // Jika bingung dengan program ini, dapat menggunakan tombol bantuan
@@ -113,17 +129,19 @@ void menuCostumer(void){
 		}
 		else if(menuCostumer==7){
 			system("cls");
+			system("pause");
 			printf("Anda Telah Keluar Dari Program\n");
 			exit(0);
 		}
 		else{
- 
-   			inputSalah();
+			inputSalah();
+			goto menuCostumer;
 		}
 }
  
 //menu jasa
 void menuJasa(void){
+	menuJasa:
 	system("cls");
 	header();
 	const  float dp = 0.5;
@@ -202,7 +220,7 @@ void menuJasa(void){
 	}
 	else if(menuJasa==8){
    		int pilih;
-   		printf("gatau ni mau isi apa kaden");
+   		printf("Belum isi");
    		printf ("\n\n[1] KEMBALI \n");
    		if(pilih == 1){
    			menuCostumer();
@@ -210,6 +228,10 @@ void menuJasa(void){
    	}
    	else if(menuJasa == 9){
    		menuCostumer();
+   	}
+   	else{
+   		inputSalah();
+   		goto menuJasa;
    	}
  
 	//lanjut ke pembayaran
@@ -246,13 +268,14 @@ void menuJasa(void){
 		menuCostumer();
 	}
 	else if(teruskanPemesanan == 'n'||teruskanPemesanan == 'N'){
-		menuCostumer();
+		goto menuJasa;
 	}
  
 }
  
  
 void menuBantuan(void){
+	menuBantuan:
 	system("cls");
 	header();
 	int bantuan;
@@ -279,7 +302,7 @@ void menuBantuan(void){
    		printf("\nSILAHKAN PILIH: ");
  		scanf("%d",&tentangProgram);
 	 		if(tentangProgram==1){
-	 			menuCostumer();
+	 			goto menuBantuan;
 	 		}
  		// Penjelasan tentang tata cara Program pemesanan SPA  
   		case 2:
@@ -297,12 +320,14 @@ void menuBantuan(void){
    		printf("\nSILAHKAN PILIH: ");
  		scanf("%d",&caraMenggunakan);
 	   		if(caraMenggunakan==1){
-	 			menuCostumer();
+	   			goto menuBantuan;
 	 		}
    		//kembali ke menu utama
 	    case 3:
    		menuCostumer();
- 
+   		default:
+   		inputSalah();
+   		goto menuBantuan;
  	}
  
 }
@@ -310,17 +335,9 @@ void menuBantuan(void){
 //input salah
 void inputSalah(void){
 	system("cls");
-	header();
-	int inputSalah;
-	printf("\nINPUT ANDA SALAH");
-	printf("\n\n\n");
-	printf("[1] KEMBALI\n\n");
-	printf("SILAHKAN PILIH");
-	scanf("%d",&inputSalah);
-	if(inputSalah==1){
-		menuCostumer();
-	}	
-}
+	printf("\nINPUT ANDA ADA SALAH\n");
+	system("pause");
+	}
  
 //cetak kuitansi
 void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * alamat, const char * namaJasa, int harga, int bayarDp){
@@ -345,7 +362,7 @@ void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * al
     fprintf(fpointer,"| DP                                        : %d\n",bayarDp);
     fprintf(fpointer,"========================================================\n");
     fprintf(fpointer,"========================================================\n");
-    fprintf(fpointer,"| LUNAS                                                |\n");
+    fprintf(fpointer,"|                                                      |\n");
     fprintf(fpointer,"========================================================\n");
     fclose(fpointer);
  }
@@ -419,6 +436,7 @@ void tampilkanRincianJasa7(void){
 }
  
 void menuPegawai(void){
+	menuPegawai:
 	system("cls");
 	header();
 	int menuJasa;
@@ -441,7 +459,14 @@ void menuPegawai(void){
 		menuKasir();
 	}
 	else if(menuJasa == 9){
- 
+		system("cls");
+		system("pause");
+		printf("Anda keluar dari program\n");
+		exit(0);
+	}
+	else{
+		inputSalah();
+		goto menuPegawai;
 	}
 }
  
@@ -505,6 +530,7 @@ void tampilkantotalharga(int totalhargakeseluruhan){
 	printf("Total Harga Keseluruhan     : Rp. %i\n", totalhargakeseluruhan);
 }
  
+//menghitung sisa pembayaran
 int hitungsisapembayaran(int totalhargakeseluruhan, int DP){
 	int sisapembayaran;
 	sisapembayaran = totalhargakeseluruhan - DP;
@@ -527,7 +553,7 @@ void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int total
 		printf("Total Harga                 : Rp. %i\n", totalhargakeseluruhan);
 		printf("Pembayaran                  : Rp. %i\n", pembayaran);
 		if(pembayaran>totalhargakeseluruhan){
-			printf("Kembali                    : Rp. %i\n", kembali);
+			printf("Kembali                     : Rp. %i\n", kembali);
 		}
 		printf("========================================================\n");
 		printf ("|                      TERIMAKASIH                     |\n");
@@ -546,7 +572,7 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 	time_t ambil_waktu2;
     time(&ambil_waktu2);	
 	FILE * fpointernota;
-	fpointernota = fopen("nota.txt", "w+");
+	fpointernota = fopen("notaKasir.txt", "w+");
     fprintf(fpointernota,"%s", ctime(&ambil_waktu2) );
     fprintf(fpointernota,"========================================================\n");
     fprintf(fpointernota,"|                    RAYURI SPA                        |\n");
@@ -585,3 +611,5 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 	}
    fclose (fpointernota);
 }
+ 
+ 
