@@ -439,6 +439,60 @@ void inputSalah(void){
 	}
  
 //fungsi untuk mencetak kuitansi pembayaran DP apabila customer sudah selesai memesan
+/*void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * alamat, const char * namaJasa, int harga, int bayarDp){
+    //kuitansi
+    time_t ambil_waktu1;
+    time(&ambil_waktu1);
+    FILE * fpointer;
+    fpointer=fopen("kuitansi.txt", "w+"); 
+    fprintf(fpointer,"%s",ctime(&ambil_waktu1));
+    fprintf(fpointer,"========================================================\n");
+    fprintf(fpointer,"|                    RAYURI SPA                        |\n");
+    fprintf(fpointer,"|                 Kota Denpasar                        |\n");
+    fprintf(fpointer,"|                Telp. 08123456789                     |\n");
+    fprintf(fpointer,"========================================================\n");
+    fprintf(fpointer,"| Bukti Pemesanan Paket Spa                            |\n");                
+    fprintf(fpointer,"  Nama Pelanggan                            : %s\n",namaPelanggan);                
+    fprintf(fpointer,"  No Telepon                                : %s\n",noHp);                
+    fprintf(fpointer,"  Alamat                                    : %s\n",alamat);                
+    fprintf(fpointer,"========================================================\n");
+    fprintf(fpointer,"  %s\n",namaJasa);                
+    fprintf(fpointer,"| Total Harga                               : %d\n",harga);
+    fprintf(fpointer,"| DP                                        : %d\n",bayarDp);
+    fprintf(fpointer,"========================================================\n");
+    fprintf(fpointer,"========================================================\n");
+    fprintf(fpointer,"|                                                      |\n");
+    fprintf(fpointer,"========================================================\n");
+    fclose(fpointer);
+    void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100][30], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran){
+	time_t ambil_waktu2;
+    time(&ambil_waktu2);	
+	FILE * fpointernota2;
+	fpointernota2 = fopen ("nota.txt", "w"); //write a file
+	fprintf(fpointernota2,"%s", ctime(&ambil_waktu2) );
+	fprintf (fpointernota2, "=============================================================================================================\n\n");
+	fprintf (fpointernota2, "                                                  RAYURI SPA                                                   \n");
+	fprintf (fpointernota2, "                                                 Kota Denpasar                                                  \n");
+	fprintf (fpointernota2, "                                                Telp. 08123456789                                               \n");
+	fprintf (fpointernota2, "==============================================================================================================\n\n");
+	fprintf (fpointernota2, "Bukti Pembayaran Paket Spa\n\n");
+	fprintf (fpointernota2, "                                                                                                   Kasir : Siapa\n");
+	fprintf (fpointernota2, "Nama Pelanggan                            : %s\n" , namaPelanggan);
+	fprintf (fpointernota2, "No Telepon                                : %s\n",noHp);
+	fprintf (fpointernota2, "Rincian Belanja                           :\n"); 
+	fprintf (fpointernota2, "----------------------------------------------------------------------------------------------------------------\n"); 
+    for(i=1; i<=paket; i++){
+		fprintf(fpointernota2, "%i. %i %s (Rp.%i) \nRp. %i\n\n", i, jumlah[i], &namapaket[i][i], harga[i], totalharga[i]);
+	}            
+	fprintf (fpointernota2, "----------------------------------------------------------------------------------------------------------------\n"); 
+	fprintf(fpointernota2, "                                               TOTAL PEMBAYARAN                                                  \n");            
+	fprintf(fpointernota2, "                                                   Rp. %i\n", totalhargakeseluruhan);    
+	fprintf (fpointernota2, "----------------------------------------------------------------------------------------------------------------\n");                                                        
+    fclose (fpointernota2); 
+} 
+    */
+ 
+//fungsi untuk mencetak kuitansi pembayaran DP apabila customer sudah selesai memesan
 void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * alamat, const char * namaJasa, int harga, int bayarDp){
     //kuitansi
     time_t ambil_waktu1;
@@ -447,22 +501,22 @@ void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * al
     fpointerkuitansi=fopen("kuitansi.txt", "w+"); 
     fprintf (fpointerkuitansi,"%s",ctime(&ambil_waktu1));
     fprintf (fpointerkuitansi, "=============================================================================================================\n\n");
-	fprintf (fpointerkuitansi, "                                                  RAYURI SPA                                                   \n");
-	fprintf (fpointerkuitansi, "                                                 Kota Denpasar                                                  \n");
-	fprintf (fpointerkuitansi, "                                                Telp. 08123456789                                               \n");
-	fprintf (fpointerkuitansi, "==============================================================================================================\n\n");
-	fprintf (fpointerkuitansi, "Bukti Pemesanan Paket Spa\n\n");
-	fprintf (fpointerkuitansi, "Nama Pelanggan                            : %s\n",namaPelanggan);                
+    fprintf (fpointerkuitansi, "                                                  RAYURI SPA                                                   \n");
+    fprintf (fpointerkuitansi, "                                                 Kota Denpasar                                                  \n");
+    fprintf (fpointerkuitansi, "                                                Telp. 08123456789                                               \n");
+    fprintf (fpointerkuitansi, "==============================================================================================================\n\n");
+    fprintf (fpointerkuitansi, "Bukti Pemesanan Paket Spa\n\n");
+	  fprintf (fpointerkuitansi, "Nama Pelanggan                            : %s\n",namaPelanggan);                
     fprintf (fpointerkuitansi, "No Telepon                                : %s\n",noHp);                
     fprintf (fpointerkuitansi, "Alamat                                    : %s\n",alamat);  
     fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n"); 
     fprintf (fpointerkuitansi, "%s\n",namaJasa);     
     fprintf (fpointerkuitansi, "Total Harga                               : %d\n",harga);
     fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n"); 
-	fprintf (fpointerkuitansi, "                                                      DP                                                        \n");            
-	fprintf (fpointerkuitansi, "                                                   Rp. %d\n", bayarDp);    
-	fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n");  
-	fclose  (fpointerkuitansi); 
+    fprintf (fpointerkuitansi, "                                                      DP                                                        \n");            
+    fprintf (fpointerkuitansi, "                                                   Rp. %d\n", bayarDp);    
+    fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n");  
+    fclose  (fpointerkuitansi); 
 }
  
 //fungsi untuk menampilkan rincian jasa
