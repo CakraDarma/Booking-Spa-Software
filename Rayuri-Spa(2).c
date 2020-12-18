@@ -54,7 +54,15 @@ int hitungkembali(int pembayaran, int totalhargakeseluruhan);
 void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan);
 //fungsi untuk mencetak nota pembayaran customer
 void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100][30], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran);
- 
+//fungsi untuk menampilkan dafrar histroty transaksi
+void daftarHistory(void);
+//syarat mendaftarkan member
+void rulesMember(void);
+//fungsi untuk mendaftarkan member
+void pendaftaranMember(void);
+//rekomendasi
+void menuRecomendation(void);
+
 char username[20];
 char password [20];
 struct Data{
@@ -166,7 +174,6 @@ void login(void){
 	            printf("\nSelamat anda berhasil masuk");
 	            getch();
 				menuCostumer();
-	            system("cls");
 	        	}
 	    }
 	}
@@ -202,7 +209,7 @@ void menuCostumer(void){
 	printf ("|=============================================|\n");
 	printf ("|[1] DAFTAR PAKET                             |\n");
 	printf ("|[2] DAFTAR HISTORI                           |\n");
-	printf ("|[3] -                                        |\n");
+	printf ("|[3] REKOMENDASI                              |\n");
 	printf ("|[4] -                                        |\n");
 	printf ("|[5] -                                        |\n");
 	printf ("|=============================================|\n");
@@ -216,6 +223,12 @@ void menuCostumer(void){
 		if(menuCostumer==1){
 			menuJasa();
 		}
+		else if(menuCostumer==2){
+			daftarHistory();
+		}
+		else if (menuCostumer==3){
+            menuRecomendation();
+        }
 		else if(menuCostumer==6){
 			menuBantuan();
 		}
@@ -369,9 +382,50 @@ void menuJasa(void){
 	else if(teruskanPemesanan == 'n'||teruskanPemesanan == 'N'){
 		goto menuJasa;
 	}
- 
 }
- 
+
+//
+void menuRecomendation(void){
+	system("cls");
+	int keluhan;
+	int pilih;
+	printf ("|=============================================|\n");
+    printf ("|                 KELUHAN ANDA                |\n");
+    printf ("|=============================================|\n");
+    printf ("|[1] Stres                                    |\n");
+    printf ("|[2] Cemas                                    |\n");
+    printf ("|[3] Lelah                                    |\n");
+    printf ("|[4] Depresi                                  |\n");
+    printf ("|[5] Penuaan                                  |\n");
+    printf ("|[6] Kulit Kusam                              |\n");
+    printf ("|[7] Berat Badan Berlebih                     |\n");
+    printf ("|[8] Badan Terasa Kurang Sehat                |\n");
+    printf ("|=============================================|\n");
+    printf ("Silahkan pilih : ");
+    scanf("%d", &keluhan);
+
+    system("cls");
+    printf("Kami Merekomendasikan : \n");
+    if(keluhan==1){
+    	printf("Serenity Sense\n\n");
+    	printf("[1] Lanjutkan Pemesanan\n");
+    	printf("[2] Kembali\n\n");
+    	printf("Anda Memilih : ");
+    	scanf("%d",&pilih);
+    	if(pilih == 1){
+    		menuJasa();
+    	}
+    	else if(pilih == 2){
+    		menuCostumer();
+    	}
+    	else{
+    		inputSalah();
+    	}
+
+    }
+
+}
+    
 //fungsi untuk menampilan menu bantuan apabila user kesulitan dan tidak menegerti dalam penggunaan program
 void menuBantuan(void){
 	menuBantuan:
@@ -379,8 +433,8 @@ void menuBantuan(void){
 	header();
 	int bantuan;
 	printf("\n    MENU BANTUAN\n\n");
- 	printf("[1] Tentang program\n"); // Menjelaskan tentang program pemesanan kamar hotel
- 	printf("[2] Cara Menggunakan\n"); // Menjelaskan cara menggunakan program pemesanan kamar hotel
+ 	printf("[1] Tentang program\n"); // Menjelaskan tentang program pemesanan spa
+ 	printf("[2] Cara Menggunakan\n"); // Menjelaskan cara menggunakan program pemesanan spa
  	printf("[3] Kembali\n\n");  // Kembali pada menu utama
  	printf("Silahkan pilih :"); // User diminta untuk memilih pilihan diantara 3 pilihan tersebut
  	scanf("%d",&bantuan);
@@ -497,26 +551,48 @@ void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * al
     //kuitansi
     time_t ambil_waktu1;
     time(&ambil_waktu1);
-    FILE * fpointerkuitansi;
-    fpointerkuitansi=fopen("kuitansi.txt", "w+"); 
-    fprintf (fpointerkuitansi,"%s",ctime(&ambil_waktu1));
-    fprintf (fpointerkuitansi, "=============================================================================================================\n\n");
-    fprintf (fpointerkuitansi, "                                                  RAYURI SPA                                                   \n");
-    fprintf (fpointerkuitansi, "                                                 Kota Denpasar                                                  \n");
-    fprintf (fpointerkuitansi, "                                                Telp. 08123456789                                               \n");
-    fprintf (fpointerkuitansi, "==============================================================================================================\n\n");
-    fprintf (fpointerkuitansi, "Bukti Pemesanan Paket Spa\n\n");
-	  fprintf (fpointerkuitansi, "Nama Pelanggan                            : %s\n",namaPelanggan);                
-    fprintf (fpointerkuitansi, "No Telepon                                : %s\n",noHp);                
-    fprintf (fpointerkuitansi, "Alamat                                    : %s\n",alamat);  
-    fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n"); 
-    fprintf (fpointerkuitansi, "%s\n",namaJasa);     
-    fprintf (fpointerkuitansi, "Total Harga                               : %d\n",harga);
-    fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n"); 
-    fprintf (fpointerkuitansi, "                                                      DP                                                        \n");            
-    fprintf (fpointerkuitansi, "                                                   Rp. %d\n", bayarDp);    
-    fprintf (fpointerkuitansi, "----------------------------------------------------------------------------------------------------------------\n");  
-    fclose  (fpointerkuitansi); 
+    FILE * fpointerkuitansiCostumer;
+    fpointerkuitansiCostumer=fopen("kuitansiCostumer.txt", "a+"); 
+    fprintf (fpointerkuitansiCostumer,"\n%s",ctime(&ambil_waktu1));
+    fprintf (fpointerkuitansiCostumer, "=============================================================================================================\n\n");
+	fprintf (fpointerkuitansiCostumer, "                                                  RAYURI SPA                                                   \n");
+	fprintf (fpointerkuitansiCostumer, "                                                 Kota Denpasar                                                  \n");
+	fprintf (fpointerkuitansiCostumer, "                                                Telp. 08123456789                                               \n");
+	fprintf (fpointerkuitansiCostumer, "==============================================================================================================\n\n");
+	fprintf (fpointerkuitansiCostumer, "Bukti Pemesanan Paket Spa\n\n");
+	fprintf (fpointerkuitansiCostumer, "Nama Pelanggan                            : %s\n",namaPelanggan);                
+    fprintf (fpointerkuitansiCostumer, "No Telepon                                : %s\n",noHp);                
+    fprintf (fpointerkuitansiCostumer, "Alamat                                    : %s\n",alamat);  
+    fprintf (fpointerkuitansiCostumer, "----------------------------------------------------------------------------------------------------------------\n"); 
+    fprintf (fpointerkuitansiCostumer, "%s\n",namaJasa);     
+    fprintf (fpointerkuitansiCostumer, "Total Harga                               : %d\n",harga);
+    fprintf (fpointerkuitansiCostumer, "----------------------------------------------------------------------------------------------------------------\n"); 
+	fprintf (fpointerkuitansiCostumer, "                                                      DP                                                        \n");            
+	fprintf (fpointerkuitansiCostumer, "                                                   Rp. %d\n", bayarDp);    
+	fprintf (fpointerkuitansiCostumer, "----------------------------------------------------------------------------------------------------------------\n\n\n");  
+	fclose  (fpointerkuitansiCostumer); 
+}
+
+void daftarHistory (void){
+	system("cls");
+	int kembali;
+	printf("\t\t\t\t\tDaftar History Pemesanan\n");
+    FILE * fpointerkuitansiCostumer;
+    fpointerkuitansiCostumer=fopen("kuitansiCostumer.txt", "r"); 
+	char buff[255];
+    while(fgets(buff, sizeof(buff), fpointerkuitansiCostumer)){
+    	printf("%s ",buff);
+    }
+    printf("\n\n[1] kembali\n");
+    printf("pilih : ");
+    scanf("%d",&kembali);
+
+    if(kembali==1){
+    	menuCostumer();
+    }
+    else{
+    	inputSalah();
+    }
 }
  
 //fungsi untuk menampilkan rincian jasa
@@ -592,12 +668,12 @@ void menuPegawai(void){
 	menuPegawai:
 	system("cls");
 	header();
-	int menuJasa;
+	int menuPegawai;
 	printf ("|=============================================|\n");
 	printf ("|                                             |\n");
 	printf ("|=============================================|\n");
 	printf ("|[1] KASIR                                    |\n");
-	printf ("|[2]   |\n");
+	printf ("|[2] DAFTAR MEMBER                            |\n");
 	printf ("|[3]   |\n");
 	printf ("|[4]   |\n");
 	printf ("|=============================================|\n");
@@ -606,12 +682,15 @@ void menuPegawai(void){
 	printf ("|[9] KELUAR                                   |\n"); // Pilihan untuk Keluar ke sebelumnya
 	printf ("=============================================== \n");
 	printf ("Silahkan pilih : "); // Memilih Jasa yang diinginkan
-	scanf("%d", &menuJasa);
+	scanf("%d", &menuPegawai);
  
-	if(menuJasa == 1){
+	if(menuPegawai == 1){
 		menuKasir();
 	}
-	else if(menuJasa == 9){
+	else if(menuPegawai){
+		rulesMember();
+	}
+	else if(menuPegawai == 9){
 		system("cls");
 		system("pause");
 		printf("Anda keluar dari program\n");
@@ -734,7 +813,7 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 	time_t ambil_waktu2;
     time(&ambil_waktu2);	
 	FILE * fpointernota2;
-	fpointernota2 = fopen ("nota.txt", "w"); //write a file
+	fpointernota2 = fopen ("kuitansiKasir.txt", "w+"); //write a file
 	fprintf(fpointernota2,"%s", ctime(&ambil_waktu2) );
 	fprintf (fpointernota2, "=============================================================================================================\n\n");
 	fprintf (fpointernota2, "                                                  RAYURI SPA                                                   \n");
@@ -756,3 +835,80 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 	fprintf (fpointernota2, "----------------------------------------------------------------------------------------------------------------\n");                                                        
     fclose (fpointernota2); 
 } 
+
+ void rulesMember(void){
+    rulesMember :
+    system("cls");
+    header();
+    int registrasi;
+    int daftar;
+    char nama [85];
+    char alamat [250];
+    char telp [13];
+    printf ("\n\n");
+    printf ("\t\t\t\t************* RAYURI SPA MEMBER ************* \n");
+    printf ("\t\t\t\t********************************************* \n");
+    printf ("\t\t\t\t|                  RULES                    | \n");
+    printf ("\t\t\t\t|                                           | \n");
+    printf ("\t\t\t\t|1. Sudah pernah melakukan layanan spa di   | \n");
+    printf ("\t\t\t\t|   Rayuri Spa sebelumnya                   | \n");
+    printf ("\t\t\t\t|2. Member bersifat pribadi dan tidak bisa  | \n");
+    printf ("\t\t\t\t|   dipindah tangankan                      | \n");
+    printf ("\t\t\t\t|3. Setiap anggota hanya diperbolehkan      | \n");
+    printf ("\t\t\t\t|   memiliki satu akun keanggotaan dan akan | \n");
+    printf ("\t\t\t\t|   kartu keanggotaan                       | \n");
+    printf ("\t\t\t\t|4. Untuk mendaftar menjadi member dikenakan| \n");
+    printf ("\t\t\t\t|   biaya pendaftaran sebesar Rp 50000,00   | \n");
+    printf ("\t\t\t\t|5. Keanggotaan berlaku selama 2 tahun dan  | \n");
+    printf ("\t\t\t\t|   jika masa keanggotaan sudah habis maka  | \n");
+    printf ("\t\t\t\t|   anggota bisa mendaftar kembali atau     | \n");
+    printf ("\t\t\t\t|   selesai menjadi member di Rayuri Spa    | \n");
+    printf ("\t\t\t\t********************************************* \n");
+    printf ("\t\t\t\t********************************************* \n");
+    printf ("\t\t\t\t|            KEUNTUNGAN MEMBER              | \n");
+    printf ("\t\t\t\t|                                           | \n");
+    printf ("\t\t\t\t|(1) Akan mendapat potongan setiap melakukan| \n");
+    printf ("\t\t\t\t|    layanan di Rayuri Spa                  | \n");
+    printf ("\t\t\t\t|(2) Akan mendapat bonus maupun promo setiap| \n");
+    printf ("\t\t\t\t|    hari-hari penting                      | \n");
+    printf ("\t\t\t\t|(3) Dapat mengikuti program-program reward | \n");
+    printf ("\t\t\t\t|    lainnya                                | \n");
+    printf ("\t\t\t\t********************************************* \n");
+    printf ("\t\t\t\tApa yang selanjutnya akan dilakukan? \n");
+    printf ("\t\t\t\t   1. Lanjutkan Pendaftaran Member \n");
+    printf ("\t\t\t\t   2. Kembali ke Menu Utama \n");
+    printf ("\t\t\t\tMasukkan pilihan anda : ");
+    scanf  ("%d", &daftar);
+    
+    if (daftar==1){
+        pendaftaranMember();
+    }
+    else if (daftar==2){
+        menuPegawai();
+    }
+    else{
+        inputSalah();
+        goto rulesMember;
+    }
+ }
+
+ void pendaftaranMember(void){
+    system ("cls");
+    pendaftaranMember :
+    header();
+    char nama [95];
+    char alamat [250];
+    char telp [13];
+    printf ("\n\n\t\t\t\t************* RAYURI SPA MEMBER ************* \n");
+    printf ("\t\t\t\t********************************************* \n");
+    printf ("\nNama : ");
+    scanf(" %[^\n]s",nama);
+    printf ("\nAlamat : ");
+    scanf(" %[^\n]s",alamat);
+    printf ("\nNomor Telepon : ");
+    scanf(" %[^\n]s",telp);
+
+    printf("namamu : %s",nama);
+    printf("namamu : %s",alamat);
+	printf("namamu : %s",telp);
+}
