@@ -1338,27 +1338,6 @@ void pendaftaranMember(){
         
 }
 
-void simpanData (const char*nama, const char*alamat, const char*telp, const char*email){
-        int i=0;
-        FILE * fPointer2;
-        fPointer2 = fopen ("Data Member.txt", "r");
- 
-        if (fPointer2 == NULL){
-                fPointer2 = fopen ("Data Member.txt", "a+");
-                fprintf (fPointer2, "===========================================================================================================\n");
-                fprintf (fPointer2, "                               A N G G O T A  M E M B E R  R A Y U R I  S P A \n");
-                fprintf (fPointer2, "===========================================================================================================\n");
-                fprintf (fPointer2, "|  NO  |          NAMA          |                ALAMAT               |                EMAIL              |\n");
-                fprintf (fPointer2, "-----------------------------------------------------------------------------------------------------------\n");
-                fprintf (fPointer2, "  %d     %s                      %s                                    %s                                  \n", i, nama, alamat, telp, email);
-        }
-        else if(fPointer2 != NULL){
-                fPointer2 = fopen ("Data Member.txt", "a+");
-                fprintf (fPointer2, "  %d     %s                      %s                                    %s                                  \n", ++i, nama, alamat, telp, email);
-        }
-        fclose(fPointer2);
-}
-
 //fungsi untuk rekap absensi pegawai
 void menuAbsensi(){
 	system("cls");
