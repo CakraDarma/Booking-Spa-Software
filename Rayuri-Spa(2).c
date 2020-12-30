@@ -600,7 +600,9 @@ void menuBantuan(void){
 		printf ("|                                                             |\n");
   	    printf ("|Inputkan angka pada menu utama sesuai kebutuhan,             |\n");
    		printf ("|Membuat akun untuk mendapatkan diskon 5 persen,              |\n"); 
-   		printf ("|Pengguna kartu member akan diberi discount sebesar 20 persen.|\n");
+   		printf ("|Pengguna kartu member akan diberi discount sebesar 5 persen  |\n");
+   		printf ("|untuk pengguna Member Silver dan 20 persen untuk pengguna    |\n");
+   		printf ("|Member Gold                                                  |\n");
 		printf ("|=============================================================|\n");
    		getch();
    		menuBantuan();
@@ -633,6 +635,7 @@ void menuBantuan(void){
    		//mendelete semua file
    		case 4:
    		system("cls");
+   		header ();
    		char input;
    	    printf ("|=============================================================|\n");
 		printf ("|                        * RAYURI SPA *                       |\n");
