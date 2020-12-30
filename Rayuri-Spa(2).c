@@ -1288,11 +1288,7 @@ void pendaftaranMember(){
         system ("cls");
         pendaftaranMember :
         header();
-        char nama [95];
-        char alamat [250];
-        char telp [13];
-        char email [80];
-        char status [50];
+        char nama [100][30], alamat [100][100], telp [50][50], email[80][20], status[50][20];
         int member;
         int i;
         char konfirmasiPendaftaran;
@@ -1306,36 +1302,42 @@ void pendaftaranMember(){
         	printf ("\n\nMasukkan data diri pelanggan %d: ", i) ;
         	printf ("\n");
         	printf ("\n  NAMA : ");
-    		scanf  (" %[^\n]s",nama);
+    		scanf  (" %[^\n]s",&nama[i][i]);
         	printf ("\n  ALAMAT : ");
-        	scanf  (" %[^\n]s",alamat);
+        	scanf  (" %[^\n]s",&alamat[i][i]);
         	printf ("\n  NOMOR TELEPON : ");
-        	scanf  (" %[^\n]s",telp);
+        	scanf  (" %[^\n]s",&telp[i][i]);
         	printf ("\n  EMAIL MEMBER : ");
-        	scanf  (" %[^\n]s", email);
+        	scanf  (" %[^\n]s", &email[i][i]);
         	printf ("\n  STATUS MEMBER : ");
-        	scanf  (" %[^\n]s", status);
+        	scanf  (" %[^\n]s", &status[i][i]);
         }
         	printf ("\n================================================================================\n");
         	printf ("\n\n\n");
             printf ("\t         SELAMAT ANDA SUDAH MENJADI MEMBER DARI RAYURI SPA ^_^ \n");
-                FILE * fPointer2;
+             FILE * fPointer2;
         		fPointer2 = fopen ("Data Member Rayuri Spa.txt", "a+");
         		fprintf (fPointer2, "\n");
                 fprintf (fPointer2, "=====================================================================================================================================\n");
                 fprintf (fPointer2, "                                             A N G G O T A  M E M B E R  R A Y U R I  S P A \n");
                 fprintf (fPointer2, "=====================================================================================================================================\n");
-                fprintf (fPointer2, "|  NO  |          NAMA          |                ALAMAT               |                EMAIL              |      STATUS MEMBER      |\n");
-                fprintf (fPointer2, "-------------------------------------------------------------------------------------------------------------------------------------\n");
-                
-				for (i=0; i<member; i++){
-                	fprintf (fPointer2, "  %d     %10s                     %10s                                  %7s                                %7s                    |\n", i, nama, alamat, telp, email, status);
-           		}
-        		fprintf (fPointer2, "=====================================================================================================================================\n");
+                fprintf (fPointer2, "%3s", "No");
+                fprintf (fPointer2, "%20s", "Nama Customer");
+                fprintf (fPointer2, "%20s", "Alamat Customer");
+                fprintf (fPointer2, "%20s", "No. Telp");
+                fprintf (fPointer2, "%30s", "Email");
+                fprintf (fPointer2, "%20s\n", "Status");
+                for(i=1; i<=member; i++){
+                	fprintf (fPointer2, "%3i", i);
+                	fprintf (fPointer2, "%20s", &nama[i][i]);
+                	fprintf (fPointer2, "%20s", &alamat[i][i]);
+                	fprintf (fPointer2, "%20s", &telp[i][i]);
+                	fprintf (fPointer2, "%30s", &email[i][i]);
+                	fprintf (fPointer2, "%20s\n", &status[i][i]);}
+        		fprintf (fPointer2, "======================================================================================================================================\n");
         		fclose(fPointer2);
         getch(); 
-        menuPegawai(); 
-        
+        menuPegawai();     
 }
 
 //fungsi untuk rekap absensi pegawai
@@ -1520,7 +1522,7 @@ void penggajianPegawai (void){
     fprintf(fPointer ,"  NO |    NAMA           |   GAJI POKOK   |     BONUS    |   PINJAMAN  |  TOTAL GAJI  |  GAJI BERSIH  |\n");
     fprintf(fPointer ,"=======================================================================================================\n");
     
-	for (i = 0; i < jumlah; i++){
+	for (i = 1; i < jumlah; i++){
     fprintf(fPointer,"  %d     %-15s        %d          %-10d     %-13d %-13d %d  \n", i + 1, gaji[i].nama, gaji[i].pokok, gaji[i].bonus, gaji[i].pinjaman, gaji[i].pokok + gaji[i].bonus, gaji[i].pokok + gaji[i].bonus - gaji[i].pinjaman);
 	}
 	fprintf(fPointer,"=======================================================================================================\n");
