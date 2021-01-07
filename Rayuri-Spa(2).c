@@ -1525,7 +1525,7 @@ void penggajianPegawai (void){
     fprintf(fPointer ,"  NO |    NAMA           |   GAJI POKOK   |     BONUS    |   PINJAMAN  |  TOTAL GAJI  |  GAJI BERSIH  |\n");
     fprintf(fPointer ,"=======================================================================================================\n");
     
-	for (i = 1; i < jumlah; i++){
+	for (i = 0; i < jumlah; i++){
     fprintf(fPointer,"  %d     %-15s        %d          %-10d     %-13d %-13d %d  \n", i + 1, gaji[i].nama, gaji[i].pokok, gaji[i].bonus, gaji[i].pinjaman, gaji[i].pokok + gaji[i].bonus, gaji[i].pokok + gaji[i].bonus - gaji[i].pinjaman);
 	}
 	fprintf(fPointer,"=======================================================================================================\n");
