@@ -89,7 +89,7 @@ struct karyawan {
 	int bonus;
 	int pinjaman;
 	}gaji[100];
- 
+
 //=======================================================================//
 //***********         Fungsi Untuk Menampilkan Judul     ****************//
 //=======================================================================//
@@ -98,14 +98,14 @@ struct karyawan {
 // Output Argumen : void                                                 //
 // Deskripsi      : Fungsi ini untuk menampilkan judul program. Berisi   //
 //                  informasi program ini dibuat oleh siapa dan halaman  //
-//                  awal bagian pemesanan dengan nama spa                //
+//                  awal bagian pemesanan dengan nama spa.               //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
 //                                                                       //
 // Versi : 1.1                                     Rev. 1                //
 // Tgl   : 1-12-2020                               Tgl: 22-12-2020       //
 // Revisi 1       : Memperlengkap isinya dan mempercantik. Menambah      //
 //                  system color, keterangan informasi program, dan      //
-//                  halaman awal bagian pemesanan                        //
+//                  halaman awal bagian pemesanan.                       //
 // Direvisi Oleh  : Sri - 2005551121                                     //
 //=======================================================================//
 void judul(void){
@@ -147,7 +147,7 @@ void judul(void){
 //                  informasi berupa nama, alamat, no.telp.              //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
 //                                                                       //
-// Versi : 1.0                                     Rev. 1                //
+// Versi : 1.1                                     Rev. 1                //
 // Tgl   : 1-12-2020                               Tgl: 22-12-2020       //
 // Revisi 1       : Merapikan isi fungsi                                 //
 // Direvisi Oleh  : Sri - 2005551121                                     //
@@ -172,14 +172,18 @@ void header(void){
 //                  customer dan jika input 2 akan diarahkan ke staff    //
 // Dibuat Oleh    : Sri - 2005551121                                     //
 //                                                                       //
-// Versi : 1.2                                     Rev. 1                //
+// Versi : 1.3                                     Rev. 1                //
 // Tgl   : 9-12-2020                               Tgl: 10-12-2020       //
 // Revisi 1       : Menambahkan agar customer dapat melakukan login dan  //
 //                  sign up.                                             //
 // Direvisi Oleh  : Cakra - 2005551075                                   //
 //                                                 Rev. 2                //
+//                                                 Tgl: 22-12-2020       //
+// Revisi 2       : Merapikan isi fungsi agar terlihat rapi              //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//                                                 Rev. 3                //
 //                                                 Tgl: 27-12-2020       //
-// Revisi 2       : Membenahi fungsi login sehingga akses data bisa      //
+// Revisi 3       : Membenahi fungsi login sehingga akses data bisa      //
 //                  berdasarkan tiap akun pengguna                       //
 // Direvisi Oleh  : Cakra - 2005551075                                   //
 //=======================================================================//
@@ -577,9 +581,9 @@ void menuJasa(void){
 }
  
 //=======================================================================//
-//***********          Fungsi Untuk Menu Customer        ****************//
+//***********          Fungsi Untuk Tentang Kami         ****************//
 //=======================================================================//
-// Nama Fungsi    : menuJasa                                             //
+// Nama Fungsi    : tentangKami                                             //
 // Input Argumen  : int tentangKami                                      //
 // Output Argumen : void                                                 //
 // Deskripsi      : Fungsi ini untuk menampilkan informasi tentang       //
@@ -647,20 +651,19 @@ void tentangKami(void){
 	}
 }
  
- 
 //=======================================================================//
 //***********         Fungsi Untuk Menu Bantuan          ****************//
 //=======================================================================//
 // Nama Fungsi    : menuBantuan                                          //
 // Input Argumen  : int bantuan, int tentangProgram, int caraMenggunakan //
-//                  int FAQ, char input                                  //
+//                  int FAQ, char input.                                 //
 // Output Argumen : void                                                 //
 // Deskripsi      : Fungsi ini untuk menampilkan menu bantuan apabila    //
 //                  user kesulitan dan tidak mengerti dalam penggunaan   //
-//                  program                                              //
+//                  program.                                             //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
 //                                                                       //
-// Versi : 1.3                                     Rev. 1                //
+// Versi : 1.4                                     Rev. 1                //
 // Tgl: 5-12-2020                                  Tgl: 22-12-2020       //
 // Revisi 1       : Merapikan dan menambahkan 3 case yaitu tentang       //
 //                  program, cara menggunakan, dan kembali ke menu       //
@@ -676,6 +679,12 @@ void tentangKami(void){
 // Revisi 3       : Menambahkan 1 case yaitu FAQ atau pertanyaan yang    //
 //                  kira-kira sering ditanyakan oleh customer.           //
 // Direvisi Oleh  : Ayulia - 2005551059                                  //
+//                                                 Rev. 4                //
+//                                                 Tgl: 30-12-2020       //
+// Revisi 4       : Mengedit isi pada menu cara menggunakan di menu      //
+//                  bantuan dan menambahkan header pada menu reset       //
+//                  program.                                             //
+// Direvisi Oleh  : Sri - 2005551121                                     //
 //=======================================================================//
 void menuBantuan(void){
 	menuBantuan:
@@ -835,18 +844,22 @@ void inputSalah(void){
 //                  sudah selesai melakukan pembayaran Dp.               //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
 //                                                                       //
-// Versi : 1.3                                     Rev. 1                //
-// Tgl   : 5-12-2020                               Tgl: 14-12-2020       //
-// Revisi 1       : Memperbaiki dan merapikan.                           //
-// Direvisi Oleh  : Ayulia - 2005551059                                  //
+// Versi : 1.4                                     Rev. 1                //
+// Tgl   : 5-12-2020                               Tgl: 6-12-2020        //
+// Revisi 1       : Menampilkan waktu atau tanggal pada cetak kuitansi.  //
+// Direvisi Oleh  : Sri - 2005551121.                                    //
 //                                                 Rev. 2                //
+//                                                 Tgl: 14-12-2020       //
+// Revisi 2       : Memperbaiki dan merapikan.                           //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//                                                 Rev. 3                //
 //                                                 Tgl: 27-12-2020       //
-// Revisi 2       : Mengubah file open yang awalnya kuitansi.txt         //
+// Revisi 3       : Mengubah file open yang awalnya kuitansi.txt         //
 //                  menjadi pengguna.nama serta menambahkan time.        //
 // Direvisi Oleh  : Cakra - 2005551075                                   //
-//                                                 Rev. 3                //
+//                                                 Rev. 4                //
 //                                                 Tgl: 28-12-2020       //
-// Revisi 3       : Mengubah pemanggilan total harga dan DP untuk        //
+// Revisi 4       : Mengubah pemanggilan total harga dan DP untuk        //
 //                  menyesuaikan dengan perulangan di menu jasa.         //
 // Direvisi Oleh  : Ayulia - 2005551059                                  //
 //=======================================================================//
@@ -878,8 +891,27 @@ void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * al
     fprintf (fpointerkuitansiCostumer, "----------------------------------------------------------------------------------------------------------------\n");  
     fclose  (fpointerkuitansiCostumer); 
 }
- 
- //fungsi menampilkan daftar transaksi yang lunas
+
+//=======================================================================//
+//*********** Fungsi Untuk Menampilkan Konfirmasi Pemesanan *************//
+//=======================================================================//
+// Nama Fungsi    : konfirmasiPemesanan                                  //
+// Input Argumen  : int kembali                                          //
+//                  char benar                                           //
+// Output Argumen : char bank [20]                                       //
+//                  int noRekening                                       //
+//                  int jumlahTransfer                                   //
+//                  char idInvoice [20]                                  //
+//                  char nama [60]                                       //
+//                  char nohp [20]                                       //
+// Deskripsi      : Fungsi ini digunakan untuk menampilkan daftar        //
+//                  transaksi yang lunas dengan mengkonfirmasi pembayaran//
+//                  yang telah dilakukan oleh customer.                  //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.0                                     Rev. 0                //
+// Tgl   : 27-12-2020                              Tgl: -                //
+//=======================================================================//
 void konfirmasiPemesanan (void){
 	konfirmasiPemesanan:
 	system("cls");
@@ -947,8 +979,28 @@ void konfirmasiPemesanan (void){
     }
  
 }
- 
-//fungsi cetak bukti pembayaran
+
+//=======================================================================//
+//***********        Fungsi Untuk Mencetak Pembayaran       *************//
+//=======================================================================//
+// Nama Fungsi    : cekPembayaran                                        //
+// Input Argumen  : void                                                 //
+// Output Argumen : const char * bank                                    //
+//                  const char * nama                                    //
+//                  int noRekening                                       //
+//                  int jumlahTransfer                                   //
+//                  time_t waktuBayar                                    //
+//                  time(&waktuBayar)                                    //
+//                  char karakter
+// Deskripsi      : Fungsi ini digunakan untuk mengecek pembayaran yang  //
+//                  dilakukan oleh customer sebelumnya lalu setelah di   //
+//                  cek, pembayaran tersebut akan di cetak dan akan      //
+//                  disimpan ke dalam file.                              //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.0                                     Rev. 0                //
+// Tgl   : 27-12-2020                              Tgl: -                //
+//=======================================================================//
 void cekPembayaran(const char * bank, int noRekening, const char * nama, int jumlahTransfer){
 	time_t waktuBayar;
     time(&waktuBayar);
@@ -984,8 +1036,20 @@ void cekPembayaran(const char * bank, int noRekening, const char * nama, int jum
 	fprintf (fpointerkuitansiCostumer,"\n\n\nAnda Belum Melakukan Pemesanan Apapun\n\n\n");
 	fclose (fpointerkuitansiCostumer);
 }
- 
-//fungsi menampilkan daftar transaksi yang sukses
+
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Daftar Transaksi   *************//
+//=======================================================================//
+// Nama Fungsi    : daftarTransaksi                                      //
+// Input Argumen  : void                                                 //
+// Output Argumen : char buff [255]                                      //
+// Deskripsi      : Fungsi ini digunakan untuk menampilkan daftar        //
+//                  transaksi yang telah dipesan oleh customer.          //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.0                                     Rev. 0                //
+// Tgl   : 27-12-2020                              Tgl: -                //
+//=======================================================================//
 void daftarTransaksi(void){
 	system("cls");
 	//cek dulu apakah ada flie kutiansi kalau tidak kita buat 
@@ -1215,8 +1279,33 @@ void tampilkanRincianJasa7(void){
 	printf("|                                       | 3 Hours Rp 580.000,- |                                     |\n");
 	printf("|****************************************************************************************************|\n");
 }
- 
-//fungsi untuk menampilkan menu apabila login sebagai pegawai/staff
+
+//=======================================================================//
+//***********    Fungsi Untuk Menampilkan Menu Staff     ****************//
+//=======================================================================//
+// Nama Fungsi    : menuPegawai                                          //
+// Input Argumen  : int menuPegawai                                      //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini digunakan untuk menampilkan  menu, yang   //
+//                  terdiri dari kasir yang digunakan saat melakukan     //
+//                  pembayaran. Setelah itu, di menu pegawai juga kita   //
+//                  bisa melakukan pendaftaran member dan absensi pegawai//
+//                  serta penggajian pegawai.                            //
+// Dibuat Oleh    : Sri - 2005551121                                     //
+//                                                                       //
+// Versi : 1.3                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 22-12-2020       //
+// Revisi 1       : Menambahkan menu daftar member.                      //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//                                                 Rev. 2                //
+//                                                 Tgl: 28-12-2020       //
+// Revisi 1       : Menambahkan menu absen pegawai.                      //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//                                                 Rev. 3                //
+//                                                 Tgl: 29-12-2020       //
+// Revisi 1       : Menambahkan menu penggajian pegawai.                 //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//=======================================================================// 
 void menuPegawai(void){
 	menuPegawai:
 	system("cls");
@@ -1383,11 +1472,12 @@ void menurekomen(void){
 // Direvisi Oleh  : Ayulia - 2005551059                                  //
 //                                                 Rev. 3                //
 //                                                 Tgl: 29-12-2020       //
-// Revisi 3       : Menambahkan pilihan status member customer untuk     //
-//                  menambahkan diskon.                                  //
+// Revisi 3       : Menambahkan pilihan status member customer dan       //
+//                  mengedit totalhargakeseluruhan untuk menambahkan     //
+//                  diskon tergantung status member yang dipilih         //
 // Direvisi Oleh  : Sri - 2005551121                                     //
 //                                                 Rev. 4                //
-//                                                 Tgl: 8-1-2021         //
+//                                                 Tgl: 29-12-2021       //
 // Revisi 4       : Menjadikan fungsi yang awalnya terpisah menjadi      //
 //                  satu kesatuan fungsi kasir.                          //
 //                  Memperbaiki output tampilan Dp.                      //
@@ -1514,8 +1604,12 @@ void menuKasir(void){
 // Deskripsi      : Fungsi untuk mencetak nota pembayaran cusromer.      //
 // Dibuat Oleh    : Ayulia - 2005551059                                  //
 //                                                                       //
-// Versi : 1.1                                    Rev. 1                 //
-// Tgl   : 5-12-2020                              Tgl: 14-12-2020        //
+// Versi : 1.2                                    Rev. 1                 //
+// Tgl   : 5-12-2020                              Tgl: 6-12-2020         //
+// Revisi 1       : Menampilkan waktu atau tanggal pada cetak nota.      //
+// Direvisi Oleh  : Sri - 2005551121.                                    //
+//                                                Rev. 2                 //
+//                                                Tgl: 14-12-2020        //
 // Revisi 1       : Memperbaiki dan merapikan.                           //
 // Direvisi Oleh  : Ayulia - 2005551059                                  //
 //=======================================================================//
@@ -1545,15 +1639,28 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 	fprintf (fpointernota2, "----------------------------------------------------------------------------------------------------------------\n");                                                        
     fclose (fpointernota2); 
 } 
- 
+
+//=======================================================================//
+//*********  Fungsi Untuk Menampilkan Rules Member Rayuri Spa  **********//
+//=======================================================================//
+// Nama Fungsi    : rulesMember                                          //
+// Input Argumen  : int registrasi                                       //
+//                  int daftar                                           //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi untuk menampilkan rules member dari rayuri spa//
+//                  kepada customer sebelum lanjut ke pendaftaran member.//
+// Dibuat Oleh    : Sri - 2005551121                                     //
+//                                                                       //
+// Versi : 1.1                                    Rev. 1                 //
+// Tgl   : 22-12-2020                             Tgl: 29-12-2020        //
+// Revisi 1       : Mengedit isi dari rules member dari Rayuri Spa       //
+// Direvisi Oleh  : Sri - 2005551121.                                    //
+//=======================================================================//
  void rulesMember(void){
  	rulesMember :
  	header();
 	int registrasi;
 	int daftar;
-	char nama [85];
-	char alamat [250];
-	char telp [13];
 	printf ("\n\n\n\n\n\n\n");
 	printf ("\t\t\t\t************* RAYURI SPA MEMBER ************* \n");
  	printf ("\t\t\t\t********************************************* \n");
@@ -1615,10 +1722,11 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 //                  char alamat [100][100], char telp [50][50]           // 
 //                  char email[80][20], char status[50][20]              // 
 //                  time_t ambil_waktu2, time(&ambil_waktu2)             //
-// Deskripsi      : Fungsi untuk mencetak nota pembayaran cusromer.      //
+// Deskripsi      : Fungsi untuk mendaftarkan member apabila customer    //
+//                  sudah pasti ingin menjadi member di Rayuri Spa       //
 // Dibuat Oleh    : Sri - 2005551121                                     //
 //                                                                       //
-// Versi : 1.                                    Rev. 1                  //
+// Versi : 1.2                                    Rev. 1                  //
 // Tgl   : 22-12-2020                            Tgl: 29-12-2020         //
 // Revisi 1       : Memperbaiki dan merapikan.                           //
 //                  Menambahkan kuitansi pendaftaran member dalam file.  //
@@ -1828,7 +1936,31 @@ void menuAbsensi(){
     system("pause");
 	menuPegawai();
 }
- 
+//=======================================================================//
+//*********   Fungsi Untuk Menampilkan Gaji Pegawai Rayuri Spa  *********//
+//=======================================================================//
+// Nama Fungsi    : penggajianPegawai                                    //
+// Input Argumen  : int jumlah                                           //
+//                  int masaKerja                                        //
+//                  int i                                                //
+//                  int lanjutan                                         //
+//                  gaji [i].nama                                        //
+//                  gaji [i].pokok                                       //
+//                  gaji [i].pinjaman                                    //
+// Output Argumen : i+1, gaji [i].nama, gaji [i].pokok, gaji[i].bonus,   //
+//                  gaji[i].pinjaman, gaji[i].pokok + gaji[i].bonus,     //
+//                  gaji[i].pokok + gaji[i].bonus - gaji[i].pinjaman     //
+// Deskripsi      : Fungsi ini digunakan untuk menggaji karyawan sesuai  //
+//                  dengan masa kerja dari karyawan dan menampilkannnya  //
+//                  serta akan disimpan dalam bentuk file                //
+// Dibuat Oleh    : Sri - 2005551121                                     //
+//                                                                       //
+// Versi : 1.1                                    Rev. 1                 //
+// Tgl   : 29-12-2020                             Tgl: 07-01-2021        //
+// Revisi 1       : Mengedit kondisi perulangan pada file penggajian.    //
+//                  pegawai                                              //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//=======================================================================//
 void penggajianPegawai (void){
 	system ("cls");
 	header();
@@ -1852,17 +1984,17 @@ void penggajianPegawai (void){
 		printf("=============================\n");
 		printf("MASUKKAN GAJI POKOK KARYAWAN: Rp. ");
 		scanf("%d", &gaji[i].pokok);
-		printf("MASUKKAN MASA KERJA(BULAN)  : ");
+		printf("MASUKKAN MASA KERJA(BULAN)  : ");      //input bulan dengan menggunakan angka        
 		scanf("%d", &masaKerja);
  
-		if(masaKerja<12){
+		if(masaKerja<12){                              //jika masa kerja kurang dari 12 bulan maka tidak akan mendapat bonus
 			gaji[i].bonus=0;
 		}
-		else if(masaKerja>=12 && masaKerja<36){
+		else if(masaKerja>=12 && masaKerja<36){        //jika masa kerja lebih dari 12 bulan dan kurang dari 36 bulan maka akan mendapat bonus Rp 500000
 			gaji[i].bonus=500000;
 		}
 		else{
-			gaji[i].bonus=1000000;
+			gaji[i].bonus=1000000;                    //jika masa kerja lebih dari 36 bulan maka akan mendapat bonus Rp 1000000
 		}
 		printf("MASUKKAN PINJAMAN           : ");
 		scanf("%d", &gaji[i].pinjaman);
