@@ -4,8 +4,8 @@
 #include <conio.h>
 #include <time.h>
 #include <stdbool.h>
-
-//prtotipe program
+ 
+//PROTOTIPE PROGRAM
 //fungsi untuk menampilkan judul program
 void judul (void); 
 //fungsi untuk menampilkan header program
@@ -40,16 +40,6 @@ void login(void);
 void menuPegawai(void);
 //fungsi untuk menampilkan menu kasir untuk menyelesaikan pembayaran
 void menuKasir(void);
-//fungsi untuk menampilkan total harga
-void tampilkantotalharga(int totalhargakeseluruhan);
-//fungsi untuk menghitung sisa pembayaran
-int hitungsisapembayaran(int totalhargakeseluruhan, int DP);
-//fungsi untuk menampilkan sisa pembayaran
-void tampilkansisapembayaran(int sisapembayaran);
-//fungsi untuk menghitung kembali
-int hitungkembali(int pembayaran, int totalhargakeseluruhan);
-//fungsi untuk menampilkan kembali dan akhir dari transaksi
-void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan);
 //fungsi untuk mencetak nota pembayaran customer
 void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100][30], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran);
 //fungsi untuk mengkonfirmasi pemesanan
@@ -72,7 +62,7 @@ void daftarTransaksi(void);
 void menuAbsensi(void);
 //fungsi untuk menggaji pegawai
 void penggajianPegawai (void);
-
+ 
 char kuitansi[50] = "kuitansi"; 
 char username[20];
 char password [20];
@@ -86,13 +76,13 @@ struct pegawai{
     int bulan, alpha, total;
 }pegawai[100];
 FILE*out;
-
+ 
 int main() {
 	judul();
 	login();
 return 0;
 }
-
+ 
 struct karyawan {
 	char nama[50];
 	int pokok;
@@ -100,7 +90,24 @@ struct karyawan {
 	int pinjaman;
 	}gaji[100];
  
-//fungsi untuk menampilkan judul program
+//=======================================================================//
+//***********         Fungsi Untuk Menampilkan Judul     ****************//
+//=======================================================================//
+// Nama Fungsi    : judul                                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan judul program. Berisi   //
+//                  informasi program ini dibuat oleh siapa dan halaman  //
+//                  awal bagian pemesanan dengan nama spa                //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl   : 1-12-2020                               Tgl: 22-12-2020       //
+// Revisi 1       : Memperlengkap isinya dan mempercantik. Menambah      //
+//                  system color, keterangan informasi program, dan      //
+//                  halaman awal bagian pemesanan                        //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//=======================================================================//
 void judul(void){
 	system("cls");
 	system("color 79");
@@ -118,7 +125,7 @@ void judul(void){
 	printf("\t\t\t\t\t\t\t**********************\n");
 	getch();
 	system("cls");
-	printf ("\t\n\n\n\n\n\n\n\n"); //Halaman awal bagian pemesanan dengan nama hotel
+	printf ("\t\n\n\n\n\n\n\n\n"); //Halaman awal bagian pemesanan dengan nama spa
 	printf ("\t\t\t\t\t\tSELAMAT DATANG DI RAYURI SPA                       \n");
 	printf ("\t\t\t\t\t\t  'WELCOME TO RAYURI SPA'                          \n");
 	printf("\t\t\t\t========================================================\n");
@@ -130,16 +137,52 @@ void judul(void){
 	getch();
 }
  
+//=======================================================================//
+//***********  Fungsi Untuk Menampilkan Header Program   ****************//
+//=======================================================================//
+// Nama Fungsi    : header                                               //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan header program. Berisi  //
+//                  informasi berupa nama, alamat, no.telp.              //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.0                                     Rev. 1                //
+// Tgl   : 1-12-2020                               Tgl: 22-12-2020       //
+// Revisi 1       : Merapikan isi fungsi                                 //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//=======================================================================//
 //fungsi untuk menampilkan header program
 void header(void){
 	printf("\n\n\n\t\t    RAYURI SPA                            \n");
 	printf("\t\t Jl. Kenangan No.666                            \n");
 	printf("\t\tNo. Telp 08123456789                            \n");
 	printf("****************************************************\n");
-
+ 
 }
  
-//fungsi untuk login sebagai pengguna(customer) atau staff
+//=======================================================================//
+//***********       Fungsi Untuk Menampilkan login       ****************//
+//=======================================================================//
+// Nama Fungsi    : login                                                //
+// Input Argumen  : int pilihPengguna                                    //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan pilihan login sebagai   //
+//                  customer atau staff. Jika input 1 akan diarahkan ke  //
+//                  customer dan jika input 2 akan diarahkan ke staff    //
+// Dibuat Oleh    : Sri - 2005551121                                     //
+//                                                                       //
+// Versi : 1.2                                     Rev. 1                //
+// Tgl   : 9-12-2020                               Tgl: 10-12-2020       //
+// Revisi 1       : Menambahkan agar customer dapat melakukan login dan  //
+//                  sign up.                                             //
+// Direvisi Oleh  : Cakra - 2005551075                                   //
+//                                                 Rev. 2                //
+//                                                 Tgl: 27-12-2020       //
+// Revisi 2       : Membenahi fungsi login sehingga akses data bisa      //
+//                  berdasarkan tiap akun pengguna                       //
+// Direvisi Oleh  : Cakra - 2005551075                                   //
+//=======================================================================//
 void login(void){
 	login:
 	system("cls");
@@ -260,8 +303,26 @@ void login(void){
 	}
 }
  
- 
-//fungsi untuk masuk ke menu utama apabila sebelumnya di login memilih customer
+//=======================================================================//
+//***********          Fungsi Untuk Menu Customer        ****************//
+//=======================================================================//
+// Nama Fungsi    : menuCustomer                                         //
+// Input Argumen  : int menuCustomer                                     //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan menu customer apabila   //
+//                  sebelumnya di menu login memilih login sebagai       //
+//                  customer.                                            //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.2                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 9-12-2020        //
+// Revisi 1       : Merapikan.                                           //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//                                                 Rev. 2                //
+//                                                 Tgl: 28-12-2020       //
+// Revisi 2       : Mengubah urutan.                                     //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void menuCostumer(void){
 	menuCostumer:
 	system("cls");
@@ -313,14 +374,41 @@ void menuCostumer(void){
 		}
 }
  
-//fungsi untuk menampilkan menu jasa dan paket yang tersedia di spa
+//=======================================================================//
+//***********            Fungsi Untuk Menu Jasa          ****************//
+//=======================================================================//
+// Nama Fungsi    : menuJasa                                             //
+// Input Argumen  : const char * namaJasa[100][30], int i, int paket,    //
+//                  char teruskanPemesanan, char jumlah[100]             //
+//                  char namaPelanggan[100], char noHp[20],              //
+//                  char alamat[50], char waktu1[40], char waktu2[20]    // 
+// Output Argumen : const char * namaJasa[100][30], char jumlah[100]     // 
+//                  int i, int harga[100], intbayarDp[100],              //    
+//                  char namaPelanggan[100], char noHp[20],              //   
+//                  char alamat[50], char waktu1[40], char waktu2[20]    //                
+// Deskripsi      : Fungsi ini untuk menampilkan menu jasa yang tersedia //
+//                  di spa. User bisa langsung memilih dan memesan       //
+//                  paket.                                               //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.2                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 27-12-2020       //
+// Revisi 1       : Merapikan fungsi dan menambahkan di teruskan         //
+//                  pemesanan.                                           //
+// Direvisi Oleh  : Cakra - 2005551075                                   //
+//                                                 Rev. 2                //
+//                                                 Tgl: 28-12-2020       //
+// Revisi 2       : Menambahkan perulangan saat pemesanan paket.         //
+//                  Memperbaiki perhitungan dan output yang ditampilkan. //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void menuJasa(void){
 	menuJasa:
 	system("cls");
 	header();
 	const  float dp = 0.5;
 	const char * namaJasa[100][30];
-
+ 
 	int i, bayarDp[100], harga[100], paket, menuJasa[100], totaljumlahharga = 0, totalDp = 0;
 	char teruskanPemesanan, jumlah[100], dataBenar;
 	printf ("|=============================================|\n");
@@ -337,10 +425,10 @@ void menuJasa(void){
 	printf ("|                                             |\n");
 	printf ("|[8] KEMBALI                                  |\n"); // Pilihan untuk kembali ke sebelumnya
 	printf ("=============================================== \n");
-
+ 
 	printf("Ingin memesan berapa paket? "); //memilih jumlah jasa yang diinginkan
 	scanf("%i", &paket);
-
+ 
 	for(i=1; i<=paket; i++){                 //perulangan dalam memilih jasa
 		printf("\n\nPilih paket ke-%i   : " , i);
 		scanf("%i", &menuJasa[i]);
@@ -404,9 +492,9 @@ void menuJasa(void){
 	   		inputSalah();
 	   		goto menuJasa;
 		}
-	
+ 
 	}
-
+ 
 	//perhitungan untuk pembayaran
 	for(i=1; i<=paket; i++){
 		harga[i] = harga[i] * jumlah[i];
@@ -414,7 +502,7 @@ void menuJasa(void){
 		totaljumlahharga= totaljumlahharga + harga[i];
 		totalDp = totalDp + bayarDp[i];
 	}
-	
+ 
 	printf("\n\n");
 	printf("================================================================\n");
 	printf("%20s", "Pilihan");
@@ -422,14 +510,14 @@ void menuJasa(void){
 	printf("%15s", "Total Harga");
 	printf("%15s\n", "Dp");
 	printf("================================================================\n");
-
+ 
 	for(i=1; i<=paket; i++){
 		printf("%20s",namaJasa[i][i]);
 		printf("%10i",jumlah[i]);
 		printf("%15d",harga[i]);
 		printf("%15d\n",bayarDp[i]);
 	}
-
+ 
 	//menampilkan total harga, total dp, dan melanjutkan ke pemesanan
 	printf("================================================================\n");
 	printf("%30s", "GRAND TOTAL");
@@ -439,14 +527,14 @@ void menuJasa(void){
 	getchar();
 	teruskanPemesanan = getchar();
 	printf("|===============================================================|\n\n");	
-
+ 
 	pembayaran:;
 	char namaPelanggan[100] ;
 	char noHp[20];
 	char alamat[50];
 	char waktu1[40];
 	char waktu2[20];
-	
+ 
 	if(teruskanPemesanan == 'y'||teruskanPemesanan == 'Y'){
 		system("cls");
 		printf("\n\n");
@@ -478,7 +566,7 @@ void menuJasa(void){
     	getchar();
     	menuCostumer();
 	}
-	
+ 
 	else if(teruskanPemesanan == 'n'||teruskanPemesanan == 'N'){
 		goto menuJasa;
 	}
@@ -487,8 +575,20 @@ void menuJasa(void){
 		goto pembayaran;
 	}
 }
-
-//fungsi menampilkan informasi tentang rayuri spa
+ 
+//=======================================================================//
+//***********          Fungsi Untuk Menu Customer        ****************//
+//=======================================================================//
+// Nama Fungsi    : menuJasa                                             //
+// Input Argumen  : int tentangKami                                      //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan informasi tentang       //
+//                  Rayuri Spa.                                          //
+// Dibuat Oleh    : Sri - 2005551121                                     //
+//                                                                       //
+// Versi : 1.0                                     Rev. 0                //
+// Tgl: 22-12-2020                                 Tgl: -                //
+//=======================================================================//
 void tentangKami(void){
 	tentangKami:
 	system("cls");
@@ -547,7 +647,36 @@ void tentangKami(void){
 	}
 }
  
-//fungsi untuk menampilan menu bantuan apabila user kesulitan dan tidak menegerti dalam penggunaan program
+ 
+//=======================================================================//
+//***********         Fungsi Untuk Menu Bantuan          ****************//
+//=======================================================================//
+// Nama Fungsi    : menuBantuan                                          //
+// Input Argumen  : int bantuan, int tentangProgram, int caraMenggunakan //
+//                  int FAQ, char input                                  //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan menu bantuan apabila    //
+//                  user kesulitan dan tidak mengerti dalam penggunaan   //
+//                  program                                              //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.3                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 22-12-2020       //
+// Revisi 1       : Merapikan dan menambahkan 3 case yaitu tentang       //
+//                  program, cara menggunakan, dan kembali ke menu       //
+//                  sebelumnya.                                          //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//                                                 Rev. 2                //
+//                                                 Tgl: 27-12-2020       //
+// Revisi 2       : Menambahkan case 4 yaitu delete yang mana akan       //
+//                  membuat user menghapus semua data riwayat transaksi. //
+// Direvisi Oleh  : Cakra - 2005551075                                   //
+//                                                 Rev. 3                //
+//                                                 Tgl: 28-12-2020       //
+// Revisi 3       : Menambahkan 1 case yaitu FAQ atau pertanyaan yang    //
+//                  kira-kira sering ditanyakan oleh customer.           //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void menuBantuan(void){
 	menuBantuan:
 	system("cls");
@@ -562,7 +691,7 @@ void menuBantuan(void){
 	printf ("|[4] RESET PROGRAM                            |\n");//fungsi ini akan mendelete semua file
 	printf ("|[5] KEMBALI                                  |\n");//Kembali pada menu utama
 	printf ("|=============================================|\n");
- 	printf("Silahkan pilih :"); // User diminta untuk memilih pilihan diantara 5 pilihan tersebut
+ 	printf("Silahkan pilih :");                                  // User diminta untuk memilih pilihan diantara 5 pilihan tersebut
  	scanf("%d",&bantuan);
  
  	//memilih di menu bantuan
@@ -671,16 +800,57 @@ void menuBantuan(void){
  
 }
  
-//fungsi untuk menampilkan apabila input salah
+//=======================================================================//
+//***********     Fungsi Untuk Menampilkan Input Salah   ****************//
+//=======================================================================//
+// Nama Fungsi    : inputSalah                                           //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan apabila inputan user    //
+//                  salah dan tidak sesuai.                              //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl   : 5-12-2020                               Tgl: 10-12-2020       //
+// Revisi 1       : Memperbaiki dan merapikan                            //
+// Direvisi Oleh  : Cakra - 2005551075                                   //
+//=======================================================================//
 void inputSalah(void){
 	system("cls");
 	printf("\nINPUT ANDA ADA SALAH\n");
 	system("pause");
 	}
  
-//fungsi untuk mencetak kuitansi pembayaran DP apabila customer sudah selesai memesan
+//=======================================================================//
+//***********        Fungsi Untuk Cetak Kuitansi         ****************//
+//=======================================================================//
+// Nama Fungsi    : cetakKuitansi                                        //
+// Input Argumen  : -                                                    //
+// Output Argumen : const char * namaPelanggan,const char * noHp,        //
+//                  const char * alamat, const char * namaJasa[100][30], //
+//                  int totaljumlahharga, int totalDp,                   //
+//                  const char * waktu1, const char * waktu2, int i,     //
+//                  int paket, time_t ambil_waktu1, time(&ambil_waktu1)  //
+// Deskripsi      : Fungsi untuk mencetak kuitansi apabila customer      //
+//                  sudah selesai melakukan pembayaran Dp.               //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.3                                     Rev. 1                //
+// Tgl   : 5-12-2020                               Tgl: 14-12-2020       //
+// Revisi 1       : Memperbaiki dan merapikan.                           //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//                                                 Rev. 2                //
+//                                                 Tgl: 27-12-2020       //
+// Revisi 2       : Mengubah file open yang awalnya kuitansi.txt         //
+//                  menjadi pengguna.nama serta menambahkan time.        //
+// Direvisi Oleh  : Cakra - 2005551075                                   //
+//                                                 Rev. 3                //
+//                                                 Tgl: 28-12-2020       //
+// Revisi 3       : Mengubah pemanggilan total harga dan DP untuk        //
+//                  menyesuaikan dengan perulangan di menu jasa.         //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * alamat, const char * namaJasa[100][30], int totaljumlahharga, int totalDp, const char * waktu1, const char * waktu2, int i, int paket){
-    //kuitansi
     time_t ambil_waktu1;
     time(&ambil_waktu1);
     FILE * fpointerkuitansiCostumer;
@@ -707,8 +877,8 @@ void cetakKuitansi(const char * namaPelanggan,const char * noHp, const char * al
     fprintf (fpointerkuitansiCostumer, "                                                 Rp. %d\n", totalDp);    
     fprintf (fpointerkuitansiCostumer, "----------------------------------------------------------------------------------------------------------------\n");  
     fclose  (fpointerkuitansiCostumer); 
-    }
-
+}
+ 
  //fungsi menampilkan daftar transaksi yang lunas
 void konfirmasiPemesanan (void){
 	konfirmasiPemesanan:
@@ -737,7 +907,7 @@ void konfirmasiPemesanan (void){
 	        char idInvoice[20];
 	        char nama[60];
 	        char nohp[20];
-
+ 
 	        printf("Bank                                : "); fflush(stdin);
 	        gets(bank);
 	        printf("No Rekening Anda                    : "); fflush(stdin);
@@ -769,15 +939,15 @@ void konfirmasiPemesanan (void){
 	        goto konfirmasiPemesanan;
 	    }
     }
-    
+ 
     else{
     	printf("\n\n\nAnda Belum Melakukan Pemesanan Apapun\n\n\n");
     	getch();
     	menuCostumer();
     }
-	
+ 
 }
-
+ 
 //fungsi cetak bukti pembayaran
 void cekPembayaran(const char * bank, int noRekening, const char * nama, int jumlahTransfer){
 	time_t waktuBayar;
@@ -807,14 +977,14 @@ void cekPembayaran(const char * bank, int noRekening, const char * nama, int jum
 	fclose(baca);
 	fclose(salin);
 	fclose(fdaftarTransaksi);
-
+ 
 	//mendelete di konformasi pemesanan karena data sudah masuk ke daftar transaksi
 	FILE * fpointerkuitansiCostumer;
 	fpointerkuitansiCostumer=fopen(pengguna.nama,"w");
 	fprintf (fpointerkuitansiCostumer,"\n\n\nAnda Belum Melakukan Pemesanan Apapun\n\n\n");
 	fclose (fpointerkuitansiCostumer);
 }
-
+ 
 //fungsi menampilkan daftar transaksi yang sukses
 void daftarTransaksi(void){
 	system("cls");
@@ -839,8 +1009,23 @@ void daftarTransaksi(void){
     	getch();
     	menuCostumer();
 }
-
-//fungsi untuk menampilkan rincian jasa
+ 
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa1                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Simple Sense. Di sini dijelaskan keterangan jasa.    //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void tampilkanRincianJasa1(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                          SIMPLE SENSE                                              |\n");
@@ -853,6 +1038,22 @@ void tampilkanRincianJasa1(void){
 	printf("|****************************************************************************************************|\n");
 }
  
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa2                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Serenity Sense. Di sini dijelaskan keterangan jasa.  //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void tampilkanRincianJasa2(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                         SERENITY SENSE                                             |\n");
@@ -867,6 +1068,22 @@ void tampilkanRincianJasa2(void){
 	printf("|****************************************************************************************************|\n"); 
 }
  
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa3                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Refresh Sense. Di sini dijelaskan keterangan jasa.   //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void tampilkanRincianJasa3(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                            REFRESH SENSE                                           |\n");
@@ -880,6 +1097,22 @@ void tampilkanRincianJasa3(void){
 	printf("|****************************************************************************************************|\n");
 }
  
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa4                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Balance Sense. Di sini dijelaskan keterangan jasa.   //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void tampilkanRincianJasa4(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                         BALANCE SENSE                                              |\n");
@@ -893,6 +1126,22 @@ void tampilkanRincianJasa4(void){
 	printf("|****************************************************************************************************|\n");
 }
  
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa5                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Detox Sense. Di sini dijelaskan keterangan jasa.     //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================// 
 void tampilkanRincianJasa5(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                           DETOX SENSE                                              |\n");
@@ -907,6 +1156,22 @@ void tampilkanRincianJasa5(void){
 	printf("|****************************************************************************************************|\n");   
 }
  
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa6                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Firming Sense. Di sini dijelaskan keterangan jasa.   //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void tampilkanRincianJasa6(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                            FIRMING SENSE                                           |\n");
@@ -921,6 +1186,22 @@ void tampilkanRincianJasa6(void){
 	printf("|****************************************************************************************************|\n");
 }
  
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Rincian Jasa    ****************//
+//=======================================================================//
+// Nama Fungsi    : tampilkanRincianJasa7                                //
+// Input Argumen  : void                                                 //
+// Output Argumen : void                                                 //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+//                  Absolute Sense. Di sini dijelaskan keterangan jasa.  //
+//                  terdapat pula jam dan harga dari jasa tersebut.      //
+// Dibuat Oleh    : Cakra - 2005551075                                   //
+//                                                                       //
+// Versi : 1.1                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 28-12-2020       //
+// Revisi 1       : Merapikan isi fungsi supaya lebih nyaman dilihat.    //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void tampilkanRincianJasa7(void){
 	printf("|****************************************************************************************************|\n");
 	printf("|                                           ABSOLUTE SENSE                                           |\n");  
@@ -977,8 +1258,21 @@ void menuPegawai(void){
 		goto menuPegawai;
 	}
 }
-
-//fungsi untuk menampilkan rekomendasi pembelian paket spa
+ 
+//=======================================================================//
+//***********   Fungsi Untuk Menampilkan Menu Rekomen    ****************//
+//=======================================================================//
+// Nama Fungsi    : menurekomen                                          //
+// Input Argumen  : int keluhanTidakvalid, int nilai                     //
+// Output Argumen : int total                                            //
+// Deskripsi      : Fungsi ini untuk menampilkan menu rekomendasi jasa   //
+//                  apabila user kebingungan memilih. Nanti akan         //
+//                  disesuaikan dengan kode keluhan useer.               //
+// Dibuat Oleh    : Ayulia - 2005551059                                  //
+//                                                                       //
+// Versi : 1.0                                     Rev. 0                //
+// Tgl: 5-12-2020                                  Tgl: -                //
+//=======================================================================//
 void menurekomen(void){
     menurekomen:
     system("cls");
@@ -1060,12 +1354,50 @@ void menurekomen(void){
  
 }
  
-//fungsi untuk menampilkan menu kasir untuk menyelesaikan pembayaran
+//=======================================================================//
+//***********         Fungsi Untuk Menu Kasir            ****************//
+//=======================================================================//
+// Nama Fungsi    : menuKasir                                            //
+// Input Argumen  : char namaPelanggan[100], char noHp[100],             //
+//                  char namapaket[100][30], int i, int paket,           //
+//                  int harga[100], int jumlah[100], int pembayaran      //
+//                  int pilih                                            //
+// Output Argumen : int i, char namapaket[100][30], int harga[100],      //
+//                  int jumlah[100], int totalharga[100],                //
+//                  int totalhargakeseluruhan, int DP,                   //
+//                  int sisapembayaran, int pembayaran, int kembali      //
+// Deskripsi      : Fungsi ini untuk menampilkan menu bantuan apabila    //
+//                  user kesulitan dan tidak mengerti dalam penggunaan   //
+//                  program                                              //
+// Dibuat Oleh    : Ayulia - 2005551059                                  //
+//                                                                       //
+// Versi : 1.4                                     Rev. 1                //
+// Tgl: 5-12-2020                                  Tgl: 14-12-2020       //
+// Revisi 1       : Merapikan program karena masih error di output       //
+//                  nama pelanggan dan perulangannya.                    //
+//                  sebelumnya.                                          //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//                                                 Rev. 2                //
+//                                                 Tgl: 28-12-2020       //
+// Revisi 2       : Merapikan program untuk tampilan output.             //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//                                                 Rev. 3                //
+//                                                 Tgl: 29-12-2020       //
+// Revisi 3       : Menambahkan pilihan status member customer untuk     //
+//                  menambahkan diskon.                                  //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//                                                 Rev. 4                //
+//                                                 Tgl: 8-1-2021         //
+// Revisi 4       : Menjadikan fungsi yang awalnya terpisah menjadi      //
+//                  satu kesatuan fungsi kasir.                          //
+//                  Memperbaiki output tampilan Dp.                      //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void menuKasir(void){
+	menuKasir:
 	system("cls");
 	char namaPelanggan[100], noHp[100], namapaket[100][30];
-	int i, paket, harga[100], jumlah[100], totalharga[100], totalhargakeseluruhan = 0, DP, pembayaran, pilih;
-    //detailpembelian(namaPelanggan, noHp, namapaket, i, paket, harga, jumlah, totalharga, totalhargakeseluruhan, DP, pembayaran);
+	int i, paket, harga[100], jumlah[100], totalharga[100], DP, pembayaran, pilih, totalhargakeseluruhan, sisapembayaran, kembali; 
     totalhargakeseluruhan = 0;
     header();
     printf("Nama Pelanggan              : ");
@@ -1073,7 +1405,7 @@ void menuKasir(void){
     printf("No Hp                       : ");
     scanf(" %[^\n]s",noHp);
  
-    printf("========================================================\n");
+    printf("====================================================\n");
 	printf("Total Jumlah Paket          : ");
 	scanf("%i", &paket);
     printf(" \n");
@@ -1092,7 +1424,7 @@ void menuKasir(void){
 		totalharga[i] =jumlah[i]*harga[i];
 		totalhargakeseluruhan = totalhargakeseluruhan + totalharga[i];
 	}
-
+ 
     printf("=====================================================================================\n");
     printf("*********************                DAFTAR BELANJA             *********************\n");
     printf("=====================================================================================\n");
@@ -1102,7 +1434,7 @@ void menuKasir(void){
     printf("%20s", "Jumlah");
     printf("%20s\n", "Total Harga");
     printf("=====================================================================================\n");
-
+ 
     for(i=1; i<=paket; i++){
         printf("%3i", i);
         printf("%20s", &namapaket[i][i]);
@@ -1110,16 +1442,16 @@ void menuKasir(void){
         printf("%20d", jumlah[i]);
         printf("%20d\n", totalharga[i]);
     }
-	
-	printf("=====================================================================================\n");	
+ 
+	printf("=====================================================================================\n\n");
 	printf ("\t\tPilih Status Member Anda Di Bawah Ini. \n");
 	printf ("\t\t  1. Silver \n");
 	printf ("\t\t  2. Gold \n");
 	printf ("\t\t  3. Non Member\n");
 	printf ("\t\tMasukkan status member anda : ");
 	scanf  ("%d", &pilih);
-	printf ("\n\n");
-	
+	printf ("\n");
+ 
 	if (pilih == 1){
 		totalhargakeseluruhan = 0.95 * totalhargakeseluruhan;
 	}
@@ -1129,78 +1461,64 @@ void menuKasir(void){
 	else{
 		inputSalah();
 	}
-	
-	tampilkantotalharga(totalhargakeseluruhan);
  
-	printf("DP                          : Rp. ");
-	scanf("%i", &DP);
-
-	int sisapembayaran = hitungsisapembayaran (totalhargakeseluruhan, DP);
-	tampilkansisapembayaran(sisapembayaran);
+	printf("=====================================================\n\n");
+	printf("Total Harga Keseluruhan     : Rp. %i\n", totalhargakeseluruhan);
+ 
+ 	DP = totalhargakeseluruhan * 0.5;
+	printf("DP                          : Rp. %i\n", DP);
+ 
+	sisapembayaran = totalhargakeseluruhan - DP;
+	printf("Sisa Pembayaran	            : Rp. %i\n", sisapembayaran);
  
 	printf("Pembayaran                  : Rp. ");
 	scanf("%i", &pembayaran);
  
-	int kembali = hitungkembali(pembayaran, totalhargakeseluruhan);
-	tampilkankembali(kembali, pembayaran, sisapembayaran, totalhargakeseluruhan);
- 
-	cetaknota(namaPelanggan, noHp, i, jumlah, harga, totalharga, namapaket, totalhargakeseluruhan, DP, pembayaran, kembali, paket, sisapembayaran);
- 
-	getch();
-	menuPegawai();    
-}
- 
-//fungsi untuk menampilkan total harga
-void tampilkantotalharga(int totalhargakeseluruhan){
-	printf("=========================================================================================\n\n");
-	printf("Total Harga Keseluruhan     : Rp. %i\n", totalhargakeseluruhan);
-}
- 
-//fungsi untuk menghitung sisa pembayaran
-int hitungsisapembayaran(int totalhargakeseluruhan, int DP){
-	int sisapembayaran;
-	sisapembayaran = totalhargakeseluruhan - DP;
-	return sisapembayaran;
-}
- 
-//fungsi untuk menampilkan sisa pembayaran
-void tampilkansisapembayaran(int sisapembayaran){
-	printf("Sisa Pembayaran	            : Rp. %i\n", sisapembayaran);
-}
- 
-//fungsi untuk menghitung kembali
-int hitungkembali(int pembayaran, int totalhargakeseluruhan){
-	int kembali;
-	kembali = pembayaran - totalhargakeseluruhan;
-	return kembali;
-}
- 
-//fungsi untuk menampilkan kembali dan akhir dari transaksi
-void tampilkankembali(int kembali, int pembayaran, int sisapembayaran, int totalhargakeseluruhan){
 	if(pembayaran>=sisapembayaran)
-	{	printf("========================================================\n");
+	{	printf("=====================================================\n");
 		printf("Total Harga                 : Rp. %i\n", totalhargakeseluruhan);
 		printf("Pembayaran                  : Rp. %i\n", pembayaran);
-		if(pembayaran>totalhargakeseluruhan){
+		if(pembayaran>sisapembayaran){
+			kembali = pembayaran - sisapembayaran;
 			printf("Kembali                     : Rp. %i\n", kembali);
 		}
-		printf("========================================================\n");
-		printf ("|                      TERIMAKASIH                     |\n");
-		printf ("|                TELAH MELAKUKAN TRANSAKSI             |\n");
-		printf ("|                      DI RAYURI SPA                   |\n");
-		printf("========================================================\n");
+		printf("======================================================\n");
+		printf ("|                      TERIMAKASIH                   |\n");
+		printf ("|                TELAH MELAKUKAN TRANSAKSI           |\n");
+		printf ("|                      DI RAYURI SPA                 |\n");
+		printf("======================================================\n");
  
 	}
 	else
 	{
-		printf ("|                    TRANSAKSI GAGAL		        	|\n");
+		printf ("|                  TRANSAKSI GAGAL		              |\n");
+		system("pause");
+		goto menuKasir;
 	}
+	cetaknota(namaPelanggan, noHp, i, jumlah, harga, totalharga, namapaket, totalhargakeseluruhan, DP, pembayaran, kembali, paket, sisapembayaran);
+	getch();
+	menuPegawai();    
 }
  
- 
- 
- 
-//fungsi untuk mencetak nota pembayaran customer
+//=======================================================================//
+//***********          Fungsi Untuk Cetak Nota           ****************//
+//=======================================================================//
+// Nama Fungsi    : cetaknota                                            //
+// Input Argumen  : -                                                    //
+// Output Argumen : const char * namaPelanggan,const char * noHp,        //
+//                  int i, int jumlah[100], int harga[100],              //
+//                  int totalharga[100], char namapaket[100][30],        //
+//                  int totalhargakeseluruhan, int DP, int pembayaran,   //
+//                  int kembali, int paket, int sisapembayaran           //
+//                  time_t ambil_waktu2, time(&ambil_waktu2)             //
+// Deskripsi      : Fungsi untuk mencetak nota pembayaran cusromer.      //
+// Dibuat Oleh    : Ayulia - 2005551059                                  //
+//                                                                       //
+// Versi : 1.1                                    Rev. 1                 //
+// Tgl   : 5-12-2020                              Tgl: 14-12-2020        //
+// Revisi 1       : Memperbaiki dan merapikan.                           //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[100], int harga[100], int totalharga[100], char namapaket[100][30], int totalhargakeseluruhan, int DP, int pembayaran, int kembali, int paket, int sisapembayaran){
 	time_t ambil_waktu2;
     time(&ambil_waktu2);	
@@ -1286,7 +1604,33 @@ void cetaknota(const char * namaPelanggan, const char * noHp, int i, int jumlah[
 	}
  }
  
-//fungsi pendaftaran member
+//=======================================================================//
+//***********       Fungsi Untuk Pendaftaran Member      ****************//
+//=======================================================================//
+// Nama Fungsi    : pendaftaranMember                                    //
+// Input Argumen  : int member, char nama [100][30],                     //
+//                  char alamat [100][100], char telp [50][50]           // 
+//                  char email[80][20], char status[50][20]              //                        
+// Output Argumen : int i, char nama [100][30],                          //
+//                  char alamat [100][100], char telp [50][50]           // 
+//                  char email[80][20], char status[50][20]              // 
+//                  time_t ambil_waktu2, time(&ambil_waktu2)             //
+// Deskripsi      : Fungsi untuk mencetak nota pembayaran cusromer.      //
+// Dibuat Oleh    : Sri - 2005551121                                     //
+//                                                                       //
+// Versi : 1.                                    Rev. 1                  //
+// Tgl   : 22-12-2020                            Tgl: 29-12-2020         //
+// Revisi 1       : Memperbaiki dan merapikan.                           //
+//                  Menambahkan kuitansi pendaftaran member dalam file.  //
+//                  txt.                                                 //
+// Direvisi Oleh  : Sri - 2005551121                                     //
+//                                                 Rev. 2                //
+//                                                 Tgl: 30-12-2020       //
+// Revisi 2       : Memperbaiki ouput karena masih error di bagian nama  //
+//                  dan perulangan.                                      //
+ //                 Merapikan program dan output dalam file.txt.         //
+// Direvisi Oleh  : Ayulia - 2005551059                                  //
+//=======================================================================//
 void pendaftaranMember(){
         system ("cls");
         pendaftaranMember :
@@ -1300,20 +1644,22 @@ void pendaftaranMember(){
         printf ("\t\t\t\t********************************************* \n");
         printf ("\nBerapa jumlah member yang akan ditambahkan ? ");
         scanf  ("%d", &member);
-        
+        printf ("\n");
+ 
         for (i=1; i<=member; i++){
-        	printf ("\n\nMasukkan data diri pelanggan %d: ", i) ;
-        	printf ("\n");
-        	printf ("\n  NAMA : ");
+        	printf ("\nMasukkan data diri pelanggan %d: ", i) ;
+        	printf("\n");
+        	printf ("Nama          : ");
     		scanf  (" %[^\n]s",&nama[i][i]);
-        	printf ("\n  ALAMAT : ");
+        	printf ("Alamat        : ");
         	scanf  (" %[^\n]s",&alamat[i][i]);
-        	printf ("\n  NOMOR TELEPON : ");
+        	printf ("No. Telepon   : ");
         	scanf  (" %[^\n]s",&telp[i][i]);
-        	printf ("\n  EMAIL MEMBER : ");
+        	printf ("Email Member  : ");
         	scanf  (" %[^\n]s", &email[i][i]);
-        	printf ("\n  STATUS MEMBER : ");
+        	printf ("Status Member : ");
         	scanf  (" %[^\n]s", &status[i][i]);
+        	printf("\n");
         }
         	printf ("\n================================================================================\n");
         	printf ("\n\n\n");
@@ -1342,13 +1688,27 @@ void pendaftaranMember(){
         getch(); 
         menuPegawai();     
 }
-
-//fungsi untuk rekap absensi pegawai
+ 
+//=======================================================================//
+//***********    Fungsi Untuk Menampilkan Menu Absensi   ****************//
+//=======================================================================//
+// Nama Fungsi    : menuAbsensi                                          //
+// Input Argumen  : int i, int jumlah, int jumlahhari, int tahun,        //
+//                  struct pegawai { char nama[100][30], int bulan,      //
+//                  int alpha, int total }                               //
+// Output Argumen : int i, pegawai.nama[i], pegawai.bulan[i],            //
+//                  pegawai.total[i]                                     //
+// Deskripsi      : Fungsi ini untuk menampilkan menu absensi pegawai    //
+// Dibuat Oleh    : Ayulia - 2005551059                                  //
+//                                                                       //
+// Versi : 1.0                                     Rev. 0                //
+// Tgl: 28-12-2020                                 Tgl: -                //
+//=======================================================================//
 void menuAbsensi(){
 	system("cls");
     menuAbsensi:;
     header();
-
+ 
     int i, jumlah, jumlahhari, tahun;
  
     printf("==================================================================\n");
@@ -1357,7 +1717,7 @@ void menuAbsensi(){
  
     printf("\nMasukkan jumlah pegawai     : ");
     scanf("%d", &jumlah);
-
+ 
     //input untuk masing-masing pegawai seperti nama dan bulannya
     printf("\n");
     for(i=1; i<=jumlah; i++){
@@ -1377,7 +1737,7 @@ void menuAbsensi(){
                 inputSalah();                                     //jika input ketidakhadiran melebihi 31 maka dianggap salah
                 goto menuAbsensi;
             }
-            
+ 
         }
         else if(pegawai[i].bulan==4||pegawai[i].bulan==6||pegawai[i].bulan==9||pegawai[i].bulan==11){
             jumlahhari=30;                                       //jika input bulan di antara bulan 4, 6, 9, 11 yang memiliki 30 hari maka diarahkan ke sini
@@ -1423,10 +1783,10 @@ void menuAbsensi(){
             inputSalah();
             goto menuAbsensi;
         }
-
+ 
         printf("\n");
     }
-
+ 
     //output untuk perhitungan rekap absensi
     printf("\n");
     printf("==================================================================\n");
@@ -1437,7 +1797,7 @@ void menuAbsensi(){
     printf("%20s", "Periode Bulan");
     printf("%20s\n", "Total Kehadiran");
     printf("==================================================================\n");
-
+ 
     for(i=1; i<=jumlah; i++){
         printf("%3i", i);
         printf("%20s", &pegawai[i].nama[i][i]);
@@ -1445,7 +1805,7 @@ void menuAbsensi(){
         printf("%20d\n", pegawai[i].total);
     }
     printf("==================================================================\n");
-
+ 
     //rekap absensi dicetak ke file txt
     FILE * fpointerabsensi;
     fpointerabsensi=fopen("RekapAbsensi.txt", "w+");
@@ -1464,11 +1824,11 @@ void menuAbsensi(){
     }
     fprintf (fpointerabsensi, "==================================================================\n");
     fclose (fpointerabsensi);
-
+ 
     system("pause");
 	menuPegawai();
 }
-
+ 
 void penggajianPegawai (void){
 	system ("cls");
 	header();
@@ -1483,7 +1843,7 @@ void penggajianPegawai (void){
 	printf("MASUKKAN JUMLAH KARYAWAN YANG INGIN DIGAJI : ");
 	scanf("%d", &jumlah);
 	printf("============================================\n");
-	
+ 
 	for(i=0;i<jumlah; i++){
 		printf ("\n");
 		printf("MASUKKAN NAMA KARYAWAN KE-%d: ", i+1);
@@ -1494,7 +1854,7 @@ void penggajianPegawai (void){
 		scanf("%d", &gaji[i].pokok);
 		printf("MASUKKAN MASA KERJA(BULAN)  : ");
 		scanf("%d", &masaKerja);
-	
+ 
 		if(masaKerja<12){
 			gaji[i].bonus=0;
 		}
@@ -1516,7 +1876,7 @@ void penggajianPegawai (void){
     	printf("\t\t\t\t  %d     %-15s        %d          %-10d     %-13d %-13d %d  \n", i + 1, gaji[i].nama, gaji[i].pokok, gaji[i].bonus, gaji[i].pinjaman, gaji[i].pokok + gaji[i].bonus, gaji[i].pokok + gaji[i].bonus - gaji[i].pinjaman);
 	}
 	printf("\t\t\t\t=======================================================================================================\n");
-	
+ 
 	FILE * fPointer;
 	fPointer = fopen("Gaji Karyawan Rayuri Spa.txt", "a+");
 	fprintf(fPointer, "\n");
@@ -1524,13 +1884,13 @@ void penggajianPegawai (void){
     fprintf(fPointer ,"=======================================================================================================\n");
     fprintf(fPointer ,"  NO |    NAMA           |   GAJI POKOK   |     BONUS    |   PINJAMAN  |  TOTAL GAJI  |  GAJI BERSIH  |\n");
     fprintf(fPointer ,"=======================================================================================================\n");
-    
+ 
 	for (i = 0; i < jumlah; i++){
     fprintf(fPointer,"  %d     %-15s        %d          %-10d     %-13d %-13d %d  \n", i + 1, gaji[i].nama, gaji[i].pokok, gaji[i].bonus, gaji[i].pinjaman, gaji[i].pokok + gaji[i].bonus, gaji[i].pokok + gaji[i].bonus - gaji[i].pinjaman);
 	}
 	fprintf(fPointer,"=======================================================================================================\n");
   	fclose(fPointer);
-	
+ 
 	printf ("\n\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
 	printf ("Langkah Apa Yang Ingin Dilakukan Sekarang ? \n");
 	printf ("	1. Kembali ke Menu Utama\n");
@@ -1538,9 +1898,9 @@ void penggajianPegawai (void){
 	printf ("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
 	printf ("Masukkan pilihan anda : ");
 	scanf  ("%d", &lanjutan);
-
-
-		
+ 
+ 
+ 
 	if(lanjutan == 1){
 		menuPegawai();
 	}
