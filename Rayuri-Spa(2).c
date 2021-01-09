@@ -538,8 +538,8 @@ void menuJasa(void){
 	char alamat[50];
 	char waktu1[40];
 	char waktu2[20];
- 
-	if(teruskanPemesanan == 'y'||teruskanPemesanan == 'Y'){
+
+	if(teruskanPemesanan == 'y'||teruskanPemesanan == 'Y'){                                             
 		system("cls");
 		printf("\n\n");
 		printf("\n\n\n\t\t    RAYURI SPA                            \n");
@@ -1108,7 +1108,7 @@ void tampilkanRincianJasa1(void){
 // Nama Fungsi    : tampilkanRincianJasa2                                //
 // Input Argumen  : void                                                 //
 // Output Argumen : void                                                 //
-// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 2 yaitu    //
 //                  Serenity Sense. Di sini dijelaskan keterangan jasa.  //
 //                  terdapat pula jam dan harga dari jasa tersebut.      //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
@@ -1138,7 +1138,7 @@ void tampilkanRincianJasa2(void){
 // Nama Fungsi    : tampilkanRincianJasa3                                //
 // Input Argumen  : void                                                 //
 // Output Argumen : void                                                 //
-// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 3 yaitu    //
 //                  Refresh Sense. Di sini dijelaskan keterangan jasa.   //
 //                  terdapat pula jam dan harga dari jasa tersebut.      //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
@@ -1167,7 +1167,7 @@ void tampilkanRincianJasa3(void){
 // Nama Fungsi    : tampilkanRincianJasa4                                //
 // Input Argumen  : void                                                 //
 // Output Argumen : void                                                 //
-// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 4 yaitu    //
 //                  Balance Sense. Di sini dijelaskan keterangan jasa.   //
 //                  terdapat pula jam dan harga dari jasa tersebut.      //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
@@ -1196,7 +1196,7 @@ void tampilkanRincianJasa4(void){
 // Nama Fungsi    : tampilkanRincianJasa5                                //
 // Input Argumen  : void                                                 //
 // Output Argumen : void                                                 //
-// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 5 yaitu    //
 //                  Detox Sense. Di sini dijelaskan keterangan jasa.     //
 //                  terdapat pula jam dan harga dari jasa tersebut.      //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
@@ -1226,7 +1226,7 @@ void tampilkanRincianJasa5(void){
 // Nama Fungsi    : tampilkanRincianJasa6                                //
 // Input Argumen  : void                                                 //
 // Output Argumen : void                                                 //
-// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 6 yaitu    //
 //                  Firming Sense. Di sini dijelaskan keterangan jasa.   //
 //                  terdapat pula jam dan harga dari jasa tersebut.      //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
@@ -1256,7 +1256,7 @@ void tampilkanRincianJasa6(void){
 // Nama Fungsi    : tampilkanRincianJasa7                                //
 // Input Argumen  : void                                                 //
 // Output Argumen : void                                                 //
-// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 1 yaitu    //
+// Deskripsi      : Fungsi ini untuk menampilkan rincian jasa 7 yaitu    //
 //                  Absolute Sense. Di sini dijelaskan keterangan jasa.  //
 //                  terdapat pula jam dan harga dari jasa tersebut.      //
 // Dibuat Oleh    : Cakra - 2005551075                                   //
@@ -1389,9 +1389,10 @@ void menurekomen(void){
     total=0;
     do{
    		total = total + nilai;
-        printf("Masukkan Kode Keluhan            :\n");
+        printf("Masukkan Kode Keluhan            :\n");  //input kode keluhan
         scanf("%d",&nilai);
-    }while (nilai != 0);
+    }while (nilai != 0);                                 //selama input user !0 akan tetap dilakukan perhitungan
+    	//output sesuai dengan kode keluhan inputan user
     	if((total==102)||(total==108)||(total==102+108)){
     		printf("       Kami Merekomendasikan        \n");
     		printf("-----------SIMPLE SENSE-----------\n\n");
@@ -1463,8 +1464,7 @@ void menurekomen(void){
 // Versi : 1.4                                     Rev. 1                //
 // Tgl: 5-12-2020                                  Tgl: 14-12-2020       //
 // Revisi 1       : Merapikan program karena masih error di output       //
-//                  nama pelanggan dan perulangannya.                    //
-//                  sebelumnya.                                          //
+//                  nama pelanggan dan perulangannya sebelumnya.         //
 // Direvisi Oleh  : Ayulia - 2005551059                                  //
 //                                                 Rev. 2                //
 //                                                 Tgl: 28-12-2020       //
@@ -1490,16 +1490,19 @@ void menuKasir(void){
 	int i, paket, harga[100], jumlah[100], totalharga[100], DP, pembayaran, pilih, totalhargakeseluruhan, sisapembayaran, kembali; 
     totalhargakeseluruhan = 0;
     header();
+    //input identitas pelanggan
     printf("Nama Pelanggan              : ");
     scanf(" %[^\n]s",namaPelanggan);
     printf("No Hp                       : ");
     scanf(" %[^\n]s",noHp);
- 
+
+    //input total paket
     printf("====================================================\n");
 	printf("Total Jumlah Paket          : ");
 	scanf("%i", &paket);
     printf(" \n");
- 
+
+    //perulangan untuk jumlah paket
 	for(i=1; i<=paket; i++){
 		printf("Nama Paket ke-%i             : ", i);
         scanf(" %[^\n]s",&namapaket[i][i]);
@@ -1509,12 +1512,14 @@ void menuKasir(void){
 		scanf("%i", &jumlah[i]);
         printf(" \n");
 	}
- 
+
+ 	//perhitungan harga
 	for(i=1; i<=paket; i++){
 		totalharga[i] =jumlah[i]*harga[i];
 		totalhargakeseluruhan = totalhargakeseluruhan + totalharga[i];
 	}
- 
+
+ 	//output menampilkan daftar belanja customer
     printf("=====================================================================================\n");
     printf("*********************                DAFTAR BELANJA             *********************\n");
     printf("=====================================================================================\n");
@@ -1532,7 +1537,8 @@ void menuKasir(void){
         printf("%20d", jumlah[i]);
         printf("%20d\n", totalharga[i]);
     }
- 
+ 	
+ 	//pilihan status member untuk mendapatkan diskon
 	printf("=====================================================================================\n\n");
 	printf ("\t\tPilih Status Member Anda Di Bawah Ini. \n");
 	printf ("\t\t  1. Silver \n");
@@ -1542,6 +1548,7 @@ void menuKasir(void){
 	scanf  ("%d", &pilih);
 	printf ("\n");
  
+ 	//perhitungan diskon untuk member
 	if (pilih == 1){
 		totalhargakeseluruhan = 0.95 * totalhargakeseluruhan;
 	}
@@ -1552,24 +1559,28 @@ void menuKasir(void){
 		inputSalah();
 	}
  
+ 	//menampilkan total harga keseluruhan
 	printf("=====================================================\n\n");
 	printf("Total Harga Keseluruhan     : Rp. %i\n", totalhargakeseluruhan);
  
+ 	//menghitung besar DP dan menampilkannya
  	DP = totalhargakeseluruhan * 0.5;
 	printf("DP                          : Rp. %i\n", DP);
  
+ 	//menghitung sisa pembayaran dan menampilkannya
 	sisapembayaran = totalhargakeseluruhan - DP;
 	printf("Sisa Pembayaran	            : Rp. %i\n", sisapembayaran);
  
+ 	//menampilkan pembayaran
 	printf("Pembayaran                  : Rp. ");
 	scanf("%i", &pembayaran);
  
-	if(pembayaran>=sisapembayaran)
+	if(pembayaran>=sisapembayaran)                                                 //jika pembayaran>=sisa pembayaran akan ditampilkan total harga keseluruhan dan pembayaran
 	{	printf("=====================================================\n");
 		printf("Total Harga                 : Rp. %i\n", totalhargakeseluruhan);
 		printf("Pembayaran                  : Rp. %i\n", pembayaran);
 		if(pembayaran>sisapembayaran){
-			kembali = pembayaran - sisapembayaran;
+			kembali = pembayaran - sisapembayaran;                                 //jika pembayaran>sisa pembayaran akan dilakukan perhitungan dan output kembali
 			printf("Kembali                     : Rp. %i\n", kembali);
 		}
 		printf("======================================================\n");
@@ -1581,7 +1592,7 @@ void menuKasir(void){
 	}
 	else
 	{
-		printf ("|                  TRANSAKSI GAGAL		              |\n");
+		printf ("|                  TRANSAKSI GAGAL		              |\n");        //output untuk menampilkan transaksi gagal
 		system("pause");
 		goto menuKasir;
 	}
